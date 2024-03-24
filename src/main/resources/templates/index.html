@@ -26,16 +26,14 @@
         </div>
     <!-- </div> -->
 
-    <div class="container bg-light mt-3 custom-container">
-        <ul class="menu-products row">
-            <li class="bb col-auto  "><a href="">Thời trang</a></li>
-            <li class="bb col-auto  "><a href="">Thú cưng</a></li>
-            <li class="bb col-auto  "><a href="">Nội thất</a></li>
-            <li class="bb col-auto  "><a href="">Cây cảnh</a></li>
-            <li class="bb col-auto  "><a href="">Sách</a></li>
-            <li class="bb col-auto  "><a href="">Đồ điện tử</a></li>
-        </ul>
-    </div>
+        <div class="container bg-light mt-3 custom-container">
+            <ul class="menu-products row">
+                <li class="bb col" th:each="category : ${categories}">
+                    <a href="#" th:text="${category.name}"></a>
+                </li>
+            </ul>
+        </div>
+
 
     <div class="container custom-container bg-light">
         <div class="spnew">
@@ -43,246 +41,35 @@
         </div>
         <div class="productContent">
             <div class="itemtab row">
-                <li class="col-xl-3 col-6 col-lg-4 mb-4">
+                <li class="col-xl-3 col-6 col-lg-4 mb-4" th:each="product: ${products}">
                     <div class="proloop">
                         <a class="icon-heart" href="#"><i class="fa-regular fa-heart"></i></a>
                         <div class="thumbnail">
                             <a href="/detail.html">
-                                <img class="w-100" src="./assets/img/qua-bong-ro-size-7-sports-2.jpg.webp" alt="">
+                                <img class="w-100" th:src="@{'/uploads/'+ ${product.image}}" alt="">
                             </a>
                         </div>
                         <div class="product-info">
                             <div class="first-box">
-                                <div class="box-number-size">5 giờ trước</div>
-                                <div class="box-number-color">90%</div>
+                                <div class="box-number-size" th:text="${product.modifiedDate}"></div>
+                                <div class="box-number-color" th:text="${product.rate}"></div>
                             </div>
                             <div class="box-title">
                                 <h1>
                                     <a href="#">
-                                        <p class="change-color">Giày Thể Thao Nữ Biti's Hunter Street x VietMax |
-                                            Bloomin'
-                                            Central (1 ĐÔI GIÀY - 3 BIẾN THỂ) DSWH08400</p>
+                                        <p class="change-color" th:text="${product.description}"></p>
                                     </a>
 
                                 </h1>
                             </div>
                             <div class="product-price">
-                                <div class="sale-price">1,373,600 ₫</div>
+                                <div class="sale-price" th:text="${product.price}"></div>
                                 <!-- <div class="sale-discount">-20%</div> -->
                             </div>
                         </div>
                     </div>
                 </li>
-                <li class="col-xl-3 col-6 col-lg-4 mb-4">
-                    <div class="proloop">
-                        <a class="icon-heart" href="#"><i class="fa-regular fa-heart"></i></a>
-                        <div class="thumbnail">
-                            <a href="#">
-                                <img class="w-100" src="./assets/img/qua-bong-ro-size-7-sports-2.jpg.webp" alt="">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <div class="first-box">
-                                <div class="box-number-size">5 giờ trước</div>
-                                <div class="box-number-color">90%</div>
-                            </div>
-                            <div class="box-title">
-                                <h1>
-                                    <a href="#">
-                                        <p class="change-color">Giày Thể Thao Nữ Biti's Hunter Street x VietMax |
-                                            Bloomin'
-                                            Central (1 ĐÔI GIÀY - 3 BIẾN THỂ) DSWH08400</p>
-                                    </a>
 
-                                </h1>
-                            </div>
-                            <div class="product-price">
-                                <div class="sale-price">1,373,600 ₫</div>
-                                <!-- <div class="sale-discount">-20%</div> -->
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-6 col-lg-4 mb-4">
-                    <div class="proloop">
-                        <a class="icon-heart" href="#"><i class="fa-regular fa-heart"></i></a>
-                        <div class="thumbnail">
-                            <a href="#">
-                                <img class="w-100" src="./assets/img/qua-bong-ro-size-7-sports-2.jpg.webp" alt="">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <div class="first-box">
-                                <div class="box-number-size">5 giờ trước</div>
-                                <div class="box-number-color">90%</div>
-                            </div>
-                            <div class="box-title">
-                                <h1>
-                                    <a href="#">
-                                        <p class="change-color">Giày Thể Thao Nữ Biti's Hunter Street x VietMax |
-                                            Bloomin'
-                                            Central (1 ĐÔI GIÀY - 3 BIẾN THỂ) DSWH08400</p>
-                                    </a>
-
-                                </h1>
-                            </div>
-                            <div class="product-price">
-                                <div class="sale-price">1,373,600 ₫</div>
-                                <!-- <div class="sale-discount">-20%</div> -->
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-6 col-lg-4 mb-4">
-                    <div class="proloop">
-                        <a class="icon-heart" href="#"><i class="fa-regular fa-heart"></i></a>
-                        <div class="thumbnail">
-                            <a href="#">
-                                <img class="w-100" src="./assets/img/qua-bong-ro-size-7-sports-2.jpg.webp" alt="">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <div class="first-box">
-                                <div class="box-number-size">5 giờ trước</div>
-                                <div class="box-number-color">90%</div>
-                            </div>
-                            <div class="box-title">
-                                <h1>
-                                    <a href="#">
-                                        <p class="change-color">Giày Thể Thao Nữ Biti's Hunter Street x VietMax |
-                                            Bloomin'
-                                            Central (1 ĐÔI GIÀY - 3 BIẾN THỂ) DSWH08400</p>
-                                    </a>
-
-                                </h1>
-                            </div>
-                            <div class="product-price">
-                                <div class="sale-price">1,373,600 ₫</div>
-                                <!-- <div class="sale-discount">-20%</div> -->
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-6 col-lg-4 mb-4">
-                    <div class="proloop">
-                        <a class="icon-heart" href="#"><i class="fa-regular fa-heart"></i></a>
-                        <div class="thumbnail">
-                            <a href="#">
-                                <img class="w-100" src="./assets/img/qua-bong-ro-size-7-sports-2.jpg.webp" alt="">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <div class="first-box">
-                                <div class="box-number-size">5 giờ trước</div>
-                                <div class="box-number-color">90%</div>
-                            </div>
-                            <div class="box-title">
-                                <h1>
-                                    <a href="#">
-                                        <p class="change-color">Giày Thể Thao Nữ Biti's Hunter Street x VietMax |
-                                            Bloomin'
-                                            Central (1 ĐÔI GIÀY - 3 BIẾN THỂ) DSWH08400</p>
-                                    </a>
-
-                                </h1>
-                            </div>
-                            <div class="product-price">
-                                <div class="sale-price">1,373,600 ₫</div>
-                                <!-- <div class="sale-discount">-20%</div> -->
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-6 col-lg-4 mb-4">
-                    <div class="proloop">
-                        <a class="icon-heart" href="#"><i class="fa-regular fa-heart"></i></a>
-                        <div class="thumbnail">
-                            <a href="#">
-                                <img class="w-100" src="./assets/img/qua-bong-ro-size-7-sports-2.jpg.webp" alt="">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <div class="first-box">
-                                <div class="box-number-size">5 giờ trước</div>
-                                <div class="box-number-color">90%</div>
-                            </div>
-                            <div class="box-title">
-                                <h1>
-                                    <a href="#">
-                                        <p class="change-color">Giày Thể Thao Nữ Biti's Hunter Street x VietMax |
-                                            Bloomin'
-                                            Central (1 ĐÔI GIÀY - 3 BIẾN THỂ) DSWH08400</p>
-                                    </a>
-
-                                </h1>
-                            </div>
-                            <div class="product-price">
-                                <div class="sale-price">1,373,600 ₫</div>
-                                <!-- <div class="sale-discount">-20%</div> -->
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-6 col-lg-4 mb-4">
-                    <div class="proloop">
-                        <a class="icon-heart" href="#"><i class="fa-regular fa-heart"></i></a>
-                        <div class="thumbnail">
-                            <a href="#">
-                                <img class="w-100" src="./assets/img/qua-bong-ro-size-7-sports-2.jpg.webp" alt="">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <div class="first-box">
-                                <div class="box-number-size">5 giờ trước</div>
-                                <div class="box-number-color">90%</div>
-                            </div>
-                            <div class="box-title">
-                                <h1>
-                                    <a href="#">
-                                        <p class="change-color">Giày Thể Thao Nữ Biti's Hunter Street x VietMax |
-                                            Bloomin'
-                                            Central (1 ĐÔI GIÀY - 3 BIẾN THỂ) DSWH08400</p>
-                                    </a>
-
-                                </h1>
-                            </div>
-                            <div class="product-price">
-                                <div class="sale-price">1,373,600 ₫</div>
-                                <!-- <div class="sale-discount">-20%</div> -->
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="col-xl-3 col-6 col-lg-4 mb-4">
-                    <div class="proloop">
-                        <a class="icon-heart" href="#"><i class="fa-regular fa-heart"></i></a>
-                        <div class="thumbnail">
-                            <a href="#">
-                                <img class="w-100" src="./assets/img/qua-bong-ro-size-7-sports-2.jpg.webp" alt="">
-                            </a>
-                        </div>
-                        <div class="product-info">
-                            <div class="first-box">
-                                <div class="box-number-size">5 giờ trước</div>
-                                <div class="box-number-color">90%</div>
-                            </div>
-                            <div class="box-title">
-                                <h1>
-                                    <a href="#">
-                                        <p class="change-color">Giày Thể Thao Nữ Biti's Hunter Street x VietMax |
-                                            Bloomin'
-                                            Central (1 ĐÔI GIÀY - 3 BIẾN THỂ) DSWH08400</p>
-                                    </a>
-
-                                </h1>
-                            </div>
-                            <div class="product-price">
-                                <div class="sale-price">1,373,600 ₫</div>
-                                <!-- <div class="sale-discount">-20%</div> -->
-                            </div>
-                        </div>
-                    </div>
-                </li>
                 <div class="them">
                     <a href="#" class="more">XEM THÊM</a>
                 </div>

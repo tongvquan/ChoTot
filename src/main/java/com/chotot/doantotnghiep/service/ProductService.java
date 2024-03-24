@@ -76,4 +76,9 @@ public class ProductService implements IProductService {
         return false;
     }
 
+    @Override
+    public List<ProductEntity> findAllOrderByModifiedDateAsc() {
+        return productRepository.findFirst8ByOrderByModifiedDateAsc();
+    }
+
 }

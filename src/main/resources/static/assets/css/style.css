@@ -181,7 +181,8 @@ header{
 }
 .bb{
     border: solid 1px #e4e7e6;
-    padding: 20px 30px;
+    padding: 20px 0px;
+    text-align: center;
 }
 .bb:hover{
     color: rgb(57, 57, 194);

@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     List<ProductEntity> findAllByUser(UserEntity userEntity);
     Optional<ProductEntity> findById(Long id);
+
+    List<ProductEntity> findFirst8ByOrderByModifiedDateAsc();
 }

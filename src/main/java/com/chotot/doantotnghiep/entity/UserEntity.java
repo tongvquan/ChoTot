@@ -3,6 +3,10 @@ package com.chotot.doantotnghiep.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.List;
@@ -11,9 +15,19 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "users")
-public class UserEntity extends BaseEntity {
+public class UserEntity{
 
+    @Id
+    @Setter
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "createddate", nullable = false, updatable = false)
+    @CreatedDate
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    private Date createdDate;
 
     @Column(name = "username")
     private String userName;
@@ -31,7 +45,12 @@ public class UserEntity extends BaseEntity {
     private String phoneNumber;
 
     @Column(name = "status")
-    private Boolean status;
+    private Boolean status = true;
+
+    @Column(name = "modifieddate")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    @LastModifiedDate
+    private Date modifiedDate;
 
 
 

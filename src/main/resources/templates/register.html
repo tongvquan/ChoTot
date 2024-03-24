@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -36,25 +36,25 @@
                         <img class="d-block ms-auto me-auto mb-3" src="./assets/img/logo.png" alt="logo" width="121px" height="44px">
                     </a>
                     <b class="fs-3">Đăng ký</b>
-                    <form class="">
+                    <form method="post" class="" th:action="@{/register}" th:object="${user}">
                         <div class="form-group mt-4">
-                            <input type="text" class="form-control w-100 border-1 border-muted py-3" id="username"
-                                name="username" placeholder="Enter username">
+                            <input type="text" class="form-control w-100 border-1 border-muted py-3" id="username" placeholder="Enter username" th:field="*{userName}">
                         </div>
                         <div class="form-group my-4">
-                            <input type="password" class="form-control w-100 border-1 border-muted py-3" id="password"
-                                name="password" placeholder="Password">
+                            <input type="password" class="form-control w-100 border-1 border-muted py-3" id="password" placeholder="Password" th:field="*{password}">
                         </div>
                         <div class="form-group my-4">
-                            <input type="password" class="form-control w-100 border-1 border-muted py-3" id="password"
-                                name="password" placeholder="Nhập lại Password">
+                            <input type="password" class="form-control w-100 border-1 border-muted py-3" id="rePassword" placeholder="Nhập lại Password">
+                        </div>
+                        <div id="passwordMismatch" style="display: none; color: red;">Mật khẩu không khớp.</div>
+                        <div class="form-group my-4">
+                            <input type="number" class="form-control w-100 border-1 border-muted py-3" id="num" placeholder="Phone number" th:field="*{phoneNumber}">
                         </div>
                         <div class="form-group my-4">
-                            <input type="number" class="form-control w-100 border-1 border-muted py-3" id="num"
-                                name="password" placeholder="Phone number">
+                            <input type="text" class="form-control w-100 border-1 border-muted py-3" id="address" placeholder="Địa chỉ" th:field="*{address}">
                         </div>
                         <div class="form-group mb-4">
-                            <button type="submit" class="btn btn-warning btn-block w-100 py-2 text-light fs-5">Register</button>
+                            <button type="submit" class="btn btn-warning btn-block w-100 py-2 text-light fs-5" id="registerButton">Register</button>
                         </div>
                         <div class="form-group text-muted text-center">
                             <p>Đã có tài khoản?<a class="text-primary" th:href="@{/login}">Đăng nhập ngay</a></p>
@@ -64,6 +64,7 @@
             </div>
         </div>
     </div>
+<script th:src="@{/assets/js/register.js}"></script>
 </body>
 
 </html>

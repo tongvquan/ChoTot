@@ -14,4 +14,6 @@ public interface IProductService {
     Boolean update(ProductEntity product);
 
     Boolean delete(Long id);
+
+    List<ProductEntity> findAllOrderByModifiedDateAsc();
 }
