@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head">
+
+<body>
+<header th:replace="fragments/header :: header"></header>
+<div class="container w-50 bg-light mt-4">
+    <div class="row pt-2 px-3">
+        <b class="fs-4">Thông tin chi tiết</b>
+        <div class="py-3 col-12 col-md-12 col-lg-12 col-xl-12">
+            <form method="post" th:action="@{/edit-product}" th:object="${product}" enctype="multipart/form-data">
+
+
+                <div class="form-group">
+                    <input type="hidden" class="form-control p-3" id="hiddenId" th:field="*{id}"/>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control p-3" id="InputName" placeholder="Tên sản phẩm" th:field="*{name}"/>
+                </div>
+                <!--                    <div class="form-group my-3">-->
+                <!--                        <input type="text" class="form-control p-3" id="InputStatus" placeholder="Tình trạng" th:field="*{description}">-->
+                <!--                    </div>-->
+                <div class="form-group my-3">
+                    <style>
+                        /* Ẩn thanh cuộn ngang */
+                        #InputNum::-webkit-outer-spin-button,
+                        #InputNum::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+
+                        #InputNum {
+                            /* Ứng dụng giải pháp cho cả Firefox */
+                            -moz-appearance: textfield;
+                        }
+                    </style>
+                    <input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" class="form-control p-3" id="InputNum" placeholder="Độ mới" th:field="*{rate}">
+                </div>
+                <div class="form-group my-3">
+                    <input type="text" class="form-control p-3" id="InputDescribe" placeholder="Mô tả" th:field="*{description}">
+                </div>
+                <div class="form-group my-3">
+                    <select class="form-control p-3" id="exampleFormControlSelect1" th:field="*{category.id}">
+                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group my-3">
+                    <style>
+                        /* Ẩn thanh cuộn ngang */
+                        #InputPrice::-webkit-outer-spin-button,
+                        #InputPrice::-webkit-inner-spin-button {
+                            -webkit-appearance: none;
+                            margin: 0;
+                        }
+
+                        #InputPrice {
+                            /* Ứng dụng giải pháp cho cả Firefox */
+                            -moz-appearance: textfield;
+                        }
+                    </style>
+                    <input type="number" inputmode="numeric" class="form-control p-3" id="InputPrice" placeholder="Giá bán" th:field="*{price}">
+                </div>
+                <div class="form-group my-3">
+                    <input type="text" class="form-control p-3" id="InputInfo" placeholder="Địa chỉ" th:field="*{locate}">
+                </div>
+                <div class="form-group my-3">
+                    <input type="file" class="form-control p-3" name="inputImage" id="inputImage">
+                    <input type="hidden" name="currentImage" th:value="${product.image}" />
+                </div>
+                <div class="d-flex">
+                    <button type="button" class="btn btn-outline-warning me-3 py-2 w-50 fs-5">Hủy</button>
+                    <button type="submit" class="btn btn-warning w-50 py-2 fs-5">Cập nhật</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+
+<script th:src="@{/assets/js/script.js}"></script>
+</body>
+
+</html>

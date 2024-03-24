@@ -1,0 +1,135 @@
+.bg-body-color{
+    /* background-color: rgb(245, 246, 246); */
+}
+.header-color{
+    border-bottom: rgb(216, 203, 203) 1px solid;
+}
+.title-main{
+    color: #8a8d90;
+}
+.custom{
+    margin-left: 11%;
+}
+.your-cart{
+    color: #202020;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 23px;
+    padding: 15px 15px;
+}
+.security{
+    background-color: #f1f8ee;
+}
+.item-left{
+    font-size: 14px;
+    margin-left: 3px;
+}
+
+
+.list-item{
+    background-color: white;
+}
+
+.item-image{
+    height: 47px;
+    width: 70px;
+}
+
+.text-space{
+    margin-left: 11px;
+    font-size: 12px;
+    color: #8a8d90;
+}
+.minus-btn{
+    width:  30px;
+    height: 30px;
+    border: #f3f4f4;
+}
+
+.plus-btn{
+    width: 30px;
+    height: 30px;
+    border: #f3f4f4;
+}
+.number-order{
+    width: 60px;
+    height: 30px;
+    border: 1px solid #f3f4f4;
+}
+.delete-button{
+    width: 100px;
+    height: 30px;
+    border: #f3f4f4;
+}
+
+.buy-more{
+    height: 44px;
+    padding: 0 55px;
+    border: black 1px solid;
+    border-radius: 10px;
+    margin-right: 5px;
+    background-color: #fff;
+}
+
+.order-now{
+    height: 44px;
+    padding: 0 55px;
+    border: #fff;
+    border-radius: 10px;
+    margin-left: 5px;
+    background-color: rgb(254, 44, 109);
+    color: #fff;
+}
+
+.buy-order{
+    padding-bottom: 15px;
+}
+
+.deal-hot{
+    border: #FFDF00 2px solid;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 7px;
+}
+
+.deal-text{
+    color: rgb(147, 113, 45);
+    font-size: 14px;
+    font-weight: 200;
+}
+
+.coupon-cd{
+    margin-left: 10px;
+}
+
+.cp-main{
+    margin-bottom: 9px;
+}
+
+.cal-cost{
+    background-color: #fff;
+    border-radius: 7px;
+}
+
+.fin-cost{
+    padding: 10px;
+    border-radius: 7px;
+    background-color: #fff;
+}
+
+.price-item{
+    height: 30px;
+}
+
+.mon-cal{
+    border-top: #8a8d90 1px;
+    height: 52px;
+}
+
+.lixi-coin{
+    color:  #118C4F;
+}
+
+.cost-all{
+    color: #fe2c6d;
+}

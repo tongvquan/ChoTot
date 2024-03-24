@@ -1,0 +1,87 @@
+<header th:fragment="header" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <div class="topbar" >
+        <div class="container">
+            <div class="row ">
+                <div class="col-6 topbar-item ">
+                    <div class="d-flex">
+                        <span>Hotline:</span>
+                        <a href="tel:0966158666">0828734061</a>
+                        <span>(8h – 21h30)</span>
+                        <span class="px-1">|</span>
+                        <a href="#">Liên hệ hợp tác</a>
+                    </div>
+                </div>
+                <div class="col-6 topbar-item">
+                    <div class="d-flex float-end">
+                        <a href="#">Thông báo</a>
+                        <span class="px-1">|</span>
+                        <a href="#">Hỗ trợ</a>
+
+                        <span class="px-1">|</span>
+                        <div sec:authorize="!isAuthenticated()">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Tài khoản
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" th:href="@{/login}">Đăng nhập</a></li>
+                                <li><a class="dropdown-item" th:href="@{/register}">Đăng kí</a></li>
+
+                            </ul>
+                        </div>
+                        <div sec:authorize="isAuthenticated()">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                               aria-expanded="false">Xin chào, <span sec:authentication="name"></span>!
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
+                                <li><a class="dropdown-item" th:href="@{/logout}">Đăng xuất</a></li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header 2 -->
+    <nav class="navbar navbar-expand-lg container">
+        <div class="container-fluid">
+            <a class="navbar-brand logo" th:href="@{/}"><img th:src="@{'/assets/img/chotot-logo-appwrapper.png'}" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form> -->
+                <div class="d-flex group-btn-user-click ">
+                    <div class="box-header-search">
+                        <a href="#">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </a>
+                        <input type="text" placeholder="Bạn cần tìm gì...">
+                    </div>
+                    <a href="#" class="bell-icon">
+                        <i class="fa-solid fa-bell fa-lg"></i>
+                    </a>
+                    <a href="#" class="message-icon">
+                        <i class="fa-solid fa-message fa-lg"></i>
+                    </a>
+                    <a href="#" class="cart-icon">
+                        <i class="fa-solid fa-cart-shopping fa-lg"></i>
+                    </a>
+                    <a th:href="@{/manage-product}" class="manage-icon">
+                        <i class="fa-solid fa-list-check fa-lg"></i>
+                    </a>
+                    <div class="upload">
+                        <button onclick="sell()" class="btn btn-upload">Đăng tin</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
