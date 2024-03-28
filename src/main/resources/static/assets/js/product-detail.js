@@ -14,7 +14,8 @@ let productitem = {
     quantity : ""
 }
 
-
+var hiddenValue = document.getElementById('recipientId').textContent;
+localStorage.setItem('recipientId', hiddenValue);
 
 // function load data
 productDetailFunc()

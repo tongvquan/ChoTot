@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="admin/fragments/head :: head">
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <header th:replace="admin/fragments/header :: header"></header>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <aside th:replace="admin/fragments/menu :: menu"></aside>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Quản lý đơn hàng
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <a href="add-menu.html" class="btn btn-success">+Thêm mới Menu</a>
+
+                        <div class="box-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control pull-right"
+                                       placeholder="Search">
+
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th>Mã đơn hàng</th>
+                                <th>Tên</th>
+                                <th>Cần thanh toán</th>
+                                <th>SDT người bán</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                            <tr th:each="order: ${pay}">
+                                <td th:text="${order.id}"></td>
+                                <td th:text="${order.product.name}"></td>
+                                <td th:text="${order.paidFormat}"></td>
+                                <td th:text="${phone}"></td>
+                                <td>
+                                    <form th:action="@{/admin/confirm/{id}(id=${order.id})}" method="post" id="confirmForm">
+                                        <button type="submit" class="btn btn-success">Xác nhận</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 0.0.1
+        </div>
+        <strong>Copyright &copy; 2018 <a href="https://adminlte.io">TTPM_BKAP</a>.</strong>
+    </footer>
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<script th:src="@{/admin/js/jquery.min.js}"></script>
+<script th:src="@{/admin/js/jquery-ui.js}"></script>
+<script th:src="@{/admin/js/bootstrap.min.js}"></script>
+<script th:src="@{/admin/js/adminlte.min.js}"></script>
+<script th:src="@{/admin/js/dashboard.js}"></script>
+<script th:src="@{/admin/tinymce/tinymce.min.js}"></script>
+<script th:src="@{/admin/tinymce/config.js}"></script>
+<script th:src="@{/admin/js/function.js}"></script>
+</body>
+</html>

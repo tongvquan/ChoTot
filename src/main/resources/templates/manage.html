@@ -40,6 +40,7 @@
                                     <th>Giá bán</th>
                                     <th>Thời gian</th>
                                     <th>Tùy chọn</th>
+                                    <th>Trạng thái</th>
                                 </tr>
                                 <tr th:each="product, index : ${listProduct}">
                                     <td th:text="${index.index + 1}"></td>
@@ -56,10 +57,23 @@
                                         <a th:href="@{/edit-product/{id}(id=${product.id})}" class="btn btn-success">Sửa</a>
                                         <a th:href="@{/delete-product/{id}(id=${product.id})}" class="btn btn-danger">Xóa</a>
                                     </td>
+                                    <td th:if="${product.status == 0}">Đang bán</td>
+                                    <td th:if="${product.status == 1}">Chờ xác nhận</td>
+                                    <td th:if="${product.status == 2}">
+                                        <form th:action="@{/confirm/{id}(id=${product.id})}" method="post" id="confirmForm">
+                                            <button type="submit" class="btn btn-success">Bắt đầu giao hàng</button>
+                                        </form>
+                                    </td>
+                                    <td th:if="${product.status == 3}">
+                                        <form th:action="@{/confirm/{id}(id=${product.id})}" method="post" id="confirm">
+                                            <button type="submit" class="btn btn-success">Giao thành công</button>
+                                        </form>
+                                    </td>
+                                    <td th:if="${product.status == 4}">Chờ người mua xác nhận</td>
+                                    <td th:if="${product.status == 5}">Chờ ad xác nhận</td>
+                                    <td th:if="${product.status == 6}">Chờ thanh toán</td>
+                                    <td th:if="${product.status == 7}">Thành công</td>
                                 </tr>
-
-
-
                                 </tbody></table>
                         </div>
                         <!-- /.box-body -->

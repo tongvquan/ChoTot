@@ -1,6 +1,7 @@
 package com.chotot.doantotnghiep.controller.user;
 
 import com.chotot.doantotnghiep.dto.ProductDto;
+import com.chotot.doantotnghiep.dto.UserDto;
 import com.chotot.doantotnghiep.entity.UserEntity;
 import com.chotot.doantotnghiep.security.MyUser;
 import com.chotot.doantotnghiep.service.impl.IProductService;
@@ -11,8 +12,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,9 +26,18 @@ public class DetailController {
     private IUserService userService;
 
     @GetMapping("/product/detail/{id}")
-    public String getProductByCategory(Model model, @PathVariable("id")Long id){
+    public String getProductById(Model model, @PathVariable("id")Long id){
         ProductDto product = productService.findById(id);
         model.addAttribute("productdetail", product);
         return "detail";
+    }
+
+
+
+    @RequestMapping("/chat")
+    public String chat(Model model){
+        UserEntity userEntity = userService.findByUserName(SecurityUtils.getCurrentUserName());
+        model.addAttribute("user",userEntity);
+        return "chat";
     }
 }

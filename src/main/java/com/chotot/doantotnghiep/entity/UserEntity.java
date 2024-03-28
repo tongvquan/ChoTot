@@ -1,5 +1,6 @@
 package com.chotot.doantotnghiep.entity;
 
+import com.chotot.doantotnghiep.utils.Action;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,6 +45,9 @@ public class UserEntity{
     @Column(name = "phonenumber")
     private String phoneNumber;
 
+    @Column(name = "atm")
+    private String atm;
+
     @Column(name = "status")
     private Boolean status = true;
 
@@ -51,6 +55,9 @@ public class UserEntity{
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     @LastModifiedDate
     private Date modifiedDate;
+
+    @Column(name = "action")
+    private Action action;
 
 
 
@@ -62,9 +69,10 @@ public class UserEntity{
     private List<RoleEntity> roles;
 
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "seller")
     private List<ProductEntity> product;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "buyer")
     private List<OrderEntity> order;
+
 }

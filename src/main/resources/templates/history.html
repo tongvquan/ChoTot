@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head">
+
+</head>
+
+<body>
+<header th:replace="fragments/header :: header"></header>
+
+<div class="container w-75 bg-light mt-4">
+    <div class="row pt-2 px-3">
+        <b class="fs-4">Quản lý mua hàng</b>
+        <div class="py-3 col-12 col-md-12 col-lg-12 col-xl-12">
+            <section class="content">
+
+                <!-- Default box -->
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tbody>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Ảnh</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Giá bán</th>
+                                    <th>Thời gian</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                                <tr th:each="order, index : ${listOrder}">
+                                    <td th:text="${index.index + 1}"></td>
+                                    <td><img th:src="@{'/uploads/'+ ${order.product.image}}" alt="" width="100px"></td>
+                                    <td th:text="${order.product.name}"></td>
+                                    <td th:text="${order.product.price}"></td>
+
+                                    <td th:if="${order.product.modifiedDate != null}" th:text="${order.product.modifiedDate}"></td>
+                                    <td th:unless="${order.product.modifiedDate != null}" th:text="${order.product.createdDate}"></td>
+
+
+                                    <td th:if="${order.product.status == 1}">Chờ xác nhận</td>
+                                    <td th:if="${order.product.status == 2}">Chờ giao hàng</td>
+
+                                    <td th:if="${order.product.status == 3}">Đang giao hàng</td>
+                                    <td th:if="${order.product.status == 4}">
+                                        <form th:action="@{/confirm/{id}(id=${order.product.id})}" method="post" id="confirm">
+                                            <button type="submit" class="btn btn-success">Đã nhận hàng</button>
+                                        </form>
+                                    </td>
+                                    <td th:if="${order.product.status == 5}">Thành công</td>
+                                    <td th:if="${order.product.status == 6}">Thành công</td>
+                                    <td th:if="${order.product.status == 7}">Thành công</td>
+
+                                </tr>
+                                </tbody></table>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.box -->
+
+            </section>
+        </div>
+    </div>
+</div>
+
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:src="@{/assets/js/script.js}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var toggleMenu = document.getElementById("toggleMenu");
+        var accountMenu = document.getElementById("accountMenu");
+
+        toggleMenu.addEventListener("mouseenter", function() {
+            accountMenu.style.display = "block"; // Hiển thị thanh menu khi di chuột vào
+        });
+
+        toggleMenu.addEventListener("mouseleave", function() {
+            accountMenu.style.display = "none"; // Ẩn thanh menu khi di chuột ra
+        });
+    });
+
+</script>
+</body>
+
+</html>

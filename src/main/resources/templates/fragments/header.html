@@ -30,7 +30,7 @@
                         </div>
                         <div sec:authorize="isAuthenticated()">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                               aria-expanded="false">Xin chào, <span sec:authentication="name"></span>!
+                               aria-expanded="false">Xin chào, <span id="username" sec:authentication="name"></span>!
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
@@ -59,19 +59,19 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form> -->
                 <div class="d-flex group-btn-user-click ">
-                    <div class="box-header-search">
+                    <form class="box-header-search" method="get" th:action="@{/search/product}">
                         <a href="#">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </a>
-                        <input type="text" placeholder="Bạn cần tìm gì...">
-                    </div>
+                        <input class="search-input-txt w-75" name="keyword" th:value="${keyword}" type="text"  placeholder="Bạn cần tìm gì...">
+                    </form>
                     <a href="#" class="bell-icon">
                         <i class="fa-solid fa-bell fa-lg"></i>
                     </a>
                     <a href="#" class="message-icon">
                         <i class="fa-solid fa-message fa-lg"></i>
                     </a>
-                    <a href="#" class="cart-icon">
+                    <a th:href="@{/history}" class="cart-icon">
                         <i class="fa-solid fa-cart-shopping fa-lg"></i>
                     </a>
                     <a th:href="@{/manage-product}" class="manage-icon">

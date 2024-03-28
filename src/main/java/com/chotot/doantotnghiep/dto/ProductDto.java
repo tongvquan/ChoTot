@@ -1,11 +1,13 @@
 package com.chotot.doantotnghiep.dto;
 
 import com.chotot.doantotnghiep.entity.CategoryEntity;
+import com.chotot.doantotnghiep.entity.OrderEntity;
 import com.chotot.doantotnghiep.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -24,5 +26,7 @@ public class ProductDto {
     private String modifiedBy;
     private String posted;
     private String priceFormat;
-    private UserEntity userId;
+    private String priceFormat10p;
+    private UserEntity user;
+    private int status;
 }

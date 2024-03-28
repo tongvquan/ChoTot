@@ -25,6 +25,8 @@ dependencies {
 
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.33'
 
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
 
     // https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity6
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE'

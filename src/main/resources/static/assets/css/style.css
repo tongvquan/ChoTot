@@ -70,12 +70,13 @@ header{
     padding: 8px 0px;
     min-width: 180%;
 }
-.box-header-search input{
+.search-input-txt{
     padding-left: 8px;
     background-color: transparent;
     outline: none;
     border: none;
     height: 100%;
+    min-width: 90%;
 }
 .btn-upload{
     background-color: #ff8800;

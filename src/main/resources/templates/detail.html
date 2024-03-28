@@ -38,17 +38,18 @@
                     Khu vực:
                     <strong class="" th:text="${productdetail.locate}"></strong>
                 </div>
+                <p id="recipientId" th:text="${productdetail.getUser.id}" style="display: none;"></p>
 
                 <div class="Product-buy d-flex py-4">
                     <div class="btn-main">
-                        <button class="message-btn">Nhắn tin với người bán</button>
+                        <button class="message-btn" th:onclick="window.location.href='/chat'" onclick="connect()">Nhắn tin với người bán</button>
                     </div>
                     <div class="">
-                        <button class="hotline-btn">Liên hệ: <strong class="text" th:text="${productdetail.userId.phoneNumber}"></strong></button>
+                        <button class="hotline-btn">Liên hệ: <strong class="text" th:text="${productdetail.getUser.phoneNumber}"></strong></button>
                     </div>
                 </div>
                 <div class="">
-                    <button class="buy-btn">Mua sản phẩm</strong></button>
+                    <a th:href="@{/product/order/{id}(id=${productdetail.id})}" class="btn buy-btn bg-warning">Mua sản phẩm</strong></a>
                 </div>
             </div>
         </div>
@@ -60,6 +61,7 @@
 
 <script th:src="@{/assets/js/scripts.js}"></script>
 <script th:src="@{/assets/js/product-detail.js}"></script>
+<script th:src="@{/assets/js/chat.js}"></script>
 </body>
 
 </html>

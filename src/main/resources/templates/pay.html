@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -33,20 +33,20 @@
             </div>
             <div class="py-2">
                 Số tiền:
-                <strong class="">635.000đ</strong>
+                <strong class="" th:text="${order.paidFormat}"></strong>
             </div>
             <div class="py-2">
                 Nội dung:
-                <strong class="">Nội dung là username của bạn</strong>
+                <strong class="" th:text="${order.id}"></strong>
             </div>
             <div class="py-2">
-                <button class="btn btn-success py-2">Xác nhận đã chuyển khoản</button>
+                <button onclick="window.location.href= '/' " class="btn btn-success py-2">Xác nhận đã chuyển khoản</button>
             </div>
             
         </div>
         <div class="col-3">
             <div class="qr my-4">
-                <img src="./assets/img/fcf2e4cf-52fa-4c18-b3ac-4f0ad25edbe5.jfif" alt="qr" width="250px" height="300px">
+                <img th:src="@{/assets/img/fcf2e4cf-52fa-4c18-b3ac-4f0ad25edbe5.jfif}" alt="qr" width="250px" height="300px">
             </div>
         </div>
     </div>

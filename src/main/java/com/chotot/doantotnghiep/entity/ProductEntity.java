@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -32,17 +31,20 @@ public class ProductEntity extends BaseEntity{
     private String locate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private UserEntity user;
+    @JoinColumn(name = "sellerid")
+    private UserEntity seller;
 
     @Column(name = "image")
     private String image;
+
+    @Column(name = "status")
+    private int status = 0;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @OneToMany(mappedBy = "product")
-    private List<OrderDetailEntity> orderDetailEntities;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<OrderEntity> order;
 
 }
