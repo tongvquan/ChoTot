@@ -25,11 +25,11 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain applicationSecurity(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests((auth)->auth.requestMatchers("/").permitAll()
+                .authorizeHttpRequests((auth)->auth.requestMatchers("/sell-product","/manage-product","/edit-product/**","/delete-product/**").authenticated()
                 .requestMatchers("/login").permitAll()
                 .requestMatchers("/register").permitAll()
                 .requestMatchers("/admin/**").hasAuthority("ADMIN")
-                .anyRequest().authenticated()
+                .anyRequest().permitAll()
                 ).formLogin(login -> login
                         .loginPage("/login")
                         .loginProcessingUrl("/login")

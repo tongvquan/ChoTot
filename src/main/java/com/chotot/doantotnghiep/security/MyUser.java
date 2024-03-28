@@ -12,6 +12,16 @@ public class MyUser extends User {
     private Long id;
     private String fullName;
 
+    private String phoneNumber;
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public Long getId() {
         return id;
     }

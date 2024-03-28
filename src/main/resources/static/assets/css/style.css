@@ -188,10 +188,10 @@ header{
     color: rgb(57, 57, 194);
 }
 
-.muenu-products li{
+.muenu-products{
     justify-content: space-between;
     align-items: center;
-    
+    font-size: 12px;
 }
 .sale-tab{
     padding-top: 30px;
@@ -255,6 +255,15 @@ header{
 } */
 .icon-favourite,.proloop{
     position: relative;
+
+}
+.itemtab-item{
+    border: 1px solid transparent; /* Thiết lập viền mặc định là một viền trắng */
+    transition: border-color 0.3s ease;
+}
+.itemtab-item:hover {
+    border-color: #f4f4f4;
+    background-color: #fff;
 }
 
 .icon-heart{
@@ -277,7 +286,8 @@ header{
     justify-content: space-between;
 }
 .sale-price {
-    color: #ed4e4e !important;
+    color: #d0021b;
+    font-size: 15px;
 }
 .sale-discount{
     border: 1px solid #e71a3c;
@@ -289,7 +299,9 @@ header{
 .main-price{
     color: #000;
 }
-
+.change-color{
+    font-size: 15px;
+}
 .change-color :hover{
     color: rgb(57, 57, 194);
 }

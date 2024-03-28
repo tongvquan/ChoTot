@@ -13,27 +13,7 @@ let productitem = {
     sizes : "",
     quantity : ""
 }
-// object data
-let productDetails = {
-    name : "Giày Đá Banh Nam Biti's Football HSM003600",
-    price : "686000 ",
-    image : [],
-    colors : [
-        {
-            text: "Cam",
-            images: "./assets/img/product-1.webp"
-        },
-        {
-            text: "Đỏ",
-            images: "./assets/img/product-2.webp"
-        },
-        {
-            text: "Xanh Mi Nơ",
-            images: "./assets/img/product-3.webp"
-        }
-    ],
-    sizes : ["35","36","37","38","39","40","41","42","43","44"]
-}
+
 
 
 // function load data

@@ -1,5 +1,6 @@
 package com.chotot.doantotnghiep.service;
 
+import com.chotot.doantotnghiep.dto.UserDto;
 import com.chotot.doantotnghiep.entity.UserEntity;
 import com.chotot.doantotnghiep.repository.RoleRepository;
 import com.chotot.doantotnghiep.repository.UserRepository;
@@ -22,17 +23,18 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public Boolean create(UserEntity userEntity) {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        UserEntity user = userRepository.findByUserName(userEntity.getUserName());
-        userEntity.setRoles(roleRepository.findByName("USER"));
-        if(user == null){
-            userEntity.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword()));
-            userRepository.save(userEntity);
-            return true;
-        }
-        else {
+    public Boolean create(UserDto dto) {
+        if(userRepository.findByUserName(dto.getUserName()) != null){
             return false;
         }
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUserName(dto.getUserName());
+        userEntity.setPassword(passwordEncoder.encode(dto.getPassword()));
+        userEntity.setRoles(roleRepository.findByName("USER"));
+        userEntity.setPhoneNumber(dto.getPhoneNumber());
+        userEntity.setAddress(dto.getAddress());
+        userRepository.save(userEntity);
+        return true;
     }
 }

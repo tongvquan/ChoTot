@@ -16,9 +16,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @Getter
+@Setter
 public class BaseEntity {
     @Id
-    @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 

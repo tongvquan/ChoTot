@@ -1,5 +1,6 @@
 package com.chotot.doantotnghiep.controller;
 
+import com.chotot.doantotnghiep.dto.UserDto;
 import com.chotot.doantotnghiep.entity.ProductEntity;
 import com.chotot.doantotnghiep.entity.UserEntity;
 import com.chotot.doantotnghiep.service.UserService;
@@ -31,7 +32,7 @@ public class AccountController {
         return "register";
     }
     @PostMapping("/register")
-    public String save(@ModelAttribute("user") UserEntity user){
+    public String save(@ModelAttribute("user") UserDto user){
         if (userService.create(user)){
             return "redirect:/login";
         }
