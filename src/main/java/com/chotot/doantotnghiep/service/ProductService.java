@@ -166,4 +166,16 @@ public class ProductService implements IProductService {
         return new PageImpl<>(dtos, pageable, productPage.getTotalElements());
     }
 
+    @Override
+    public Page<ProductDto> searchProduct(Integer pageNo, String keyword) {
+        Pageable pageable = PageRequest.of(pageNo - 1, 5);
+        Page<ProductEntity> productPage = productRepository.findByNameLike(pageable,"%" + keyword + "%");
+        List<ProductDto> list = new ArrayList<>();
+        for(ProductEntity entity : productPage.getContent()){
+            ProductDto productDto = ProductMapper.toDTO(entity);
+            list.add(productDto);
+        }
+        return new PageImpl<>(list, pageable, productPage.getTotalElements());
+    }
+
 }

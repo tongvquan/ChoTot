@@ -24,5 +24,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
     Page<ProductEntity> findAll(Pageable page);
     Page<ProductEntity> findAllByOrderByModifiedDateDesc(Pageable page);
 
+    Page<ProductEntity> findByNameLike(Pageable page, String keyword);
 
 }

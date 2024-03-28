@@ -59,12 +59,12 @@
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form> -->
                 <div class="d-flex group-btn-user-click ">
-                    <div class="box-header-search">
+                    <form class="box-header-search" method="get" th:action="@{/search/product}">
                         <a href="#">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </a>
-                        <input type="text" placeholder="Bạn cần tìm gì...">
-                    </div>
+                        <input class="search-input-txt w-75" name="keyword" th:value="${keyword}" type="text"  placeholder="Bạn cần tìm gì...">
+                    </form>
                     <a href="#" class="bell-icon">
                         <i class="fa-solid fa-bell fa-lg"></i>
                     </a>
