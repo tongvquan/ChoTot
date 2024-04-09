@@ -8,8 +8,6 @@ import java.util.List;
 
 public interface IUserService {
     UserEntity findByUserName(String userName);
+    UserEntity findById(Long id);
     Boolean create(UserDto userEntity);
-    void saveUser(UserEntity user);
-    void disconnect(UserEntity user);
-    List<UserEntity> findConnectesUsers();
 }

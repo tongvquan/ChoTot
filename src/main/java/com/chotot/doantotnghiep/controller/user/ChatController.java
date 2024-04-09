@@ -14,6 +14,8 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -29,39 +31,13 @@ public class ChatController {
     private SimpMessagingTemplate messagingTemplate;
 
 
-    @MessageMapping("/chat")
-    public void processMessage(@Payload ChatMessage chatMessage){
-        System.out.println(123);
-        ChatMessage saveMsg = chatMessageService.save(chatMessage);
-        messagingTemplate.convertAndSendToUser(
-                chatMessage.getRecipientId().toString(),"/queue/messages",
-                ChatNotification.builder()
-                        .id(saveMsg.getId())
-                        .senderId(saveMsg.getSenderId())
-                        .recipientId(saveMsg.getRecipientId())
-                        .content(saveMsg.getContent())
-                        .build()
-        );
+    @PostMapping("/chat")
+    public void processMessage(@RequestParam("content") String content, Long id){
+        ChatMessage saveMsg = chatMessageService.save(content, id);
     }
 
-    @MessageMapping("/user.addUser")
-    @SendTo("/user/topic")
-    public UserEntity addUser(@Payload UserEntity user){
-        userService.saveUser(user);
-        return user;
-    }
 
-    @MessageMapping("/user.disconnectUser")
-    @SendTo("/user/topic")
-    public UserEntity disconnect(@Payload UserEntity user){
-        userService.disconnect(user);
-        return user;
-    }
 
-    @GetMapping("/users")
-    public ResponseEntity<List<UserEntity>> findConnectedUsers(){
-        return ResponseEntity.ok(userService.findConnectesUsers());
-    }
 
     @GetMapping("/messages/{senderId}/{recipientId}")
     public ResponseEntity<List<ChatMessage>> findChatMessages(@PathVariable("senderId")Long senderId, @PathVariable("recipientId")Long recipientId){

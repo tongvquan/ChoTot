@@ -39,8 +39,10 @@
                                     <th>Thương hiệu</th>
                                     <th>Giá bán</th>
                                     <th>Thời gian</th>
-                                    <th>Tùy chọn</th>
+                                    <th>SDT người mua</th>
                                     <th>Trạng thái</th>
+                                    <th>Tùy chọn</th>
+
                                 </tr>
                                 <tr th:each="product, index : ${listProduct}">
                                     <td th:text="${index.index + 1}"></td>
@@ -53,10 +55,8 @@
                                     <td th:if="${product.modifiedDate != null}" th:text="${product.modifiedDate}"></td>
                                     <td th:unless="${product.modifiedDate != null}" th:text="${product.createdDate}"></td>
 
-                                    <td>
-                                        <a th:href="@{/edit-product/{id}(id=${product.id})}" class="btn btn-success">Sửa</a>
-                                        <a th:href="@{/delete-product/{id}(id=${product.id})}" class="btn btn-danger">Xóa</a>
-                                    </td>
+                                    <td th:if="${product.o != null}" th:text="${product.createdDate}"></td>
+
                                     <td th:if="${product.status == 0}">Đang bán</td>
                                     <td th:if="${product.status == 1}">Chờ xác nhận</td>
                                     <td th:if="${product.status == 2}">
@@ -73,6 +73,11 @@
                                     <td th:if="${product.status == 5}">Chờ ad xác nhận</td>
                                     <td th:if="${product.status == 6}">Chờ thanh toán</td>
                                     <td th:if="${product.status == 7}">Thành công</td>
+
+                                    <td>
+                                        <a th:href="@{/edit-product/{id}(id=${product.id})}" class="btn btn-success">Sửa</a>
+                                        <a th:href="@{/delete-product/{id}(id=${product.id})}" class="btn btn-danger">Xóa</a>
+                                    </td>
                                 </tr>
                                 </tbody></table>
                         </div>

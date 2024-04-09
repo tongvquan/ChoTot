@@ -1,5 +1,6 @@
 package com.chotot.doantotnghiep.repository;
 
+import com.chotot.doantotnghiep.dto.OrderDto;
 import com.chotot.doantotnghiep.dto.ProductDto;
 import com.chotot.doantotnghiep.entity.CategoryEntity;
 import com.chotot.doantotnghiep.entity.OrderEntity;
@@ -16,4 +17,6 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
     List<OrderEntity> findAllByBuyer(UserEntity user);
 
     Optional<OrderEntity> findById(Long id);
+
+//    OrderEntity findByProduct(ProductEntity product);
 }

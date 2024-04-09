@@ -6,10 +6,7 @@ import com.chotot.doantotnghiep.entity.CategoryEntity;
 import com.chotot.doantotnghiep.entity.ProductEntity;
 import com.chotot.doantotnghiep.entity.UserEntity;
 import com.chotot.doantotnghiep.security.MyUser;
-import com.chotot.doantotnghiep.service.impl.ICategoryService;
-import com.chotot.doantotnghiep.service.impl.IProductService;
-import com.chotot.doantotnghiep.service.impl.IStorageService;
-import com.chotot.doantotnghiep.service.impl.IUserService;
+import com.chotot.doantotnghiep.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -32,6 +29,9 @@ public class ProductController {
 
     @Autowired
     private ICategoryService categoryService;
+
+//    @Autowired
+//    private IOrderService orderService;
 
     @RequestMapping("/sell-product")
     public String sell(Model model){

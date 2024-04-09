@@ -42,7 +42,7 @@
 
                 <div class="Product-buy d-flex py-4">
                     <div class="btn-main">
-                        <button class="message-btn" th:onclick="window.location.href='/chat'" onclick="connect()">Nhắn tin với người bán</button>
+                        <button class="message-btn" th:onclick="window.location.href = '/chat' " onclick="connectToChat()">Nhắn tin với người bán</button>
                     </div>
                     <div class="">
                         <button class="hotline-btn">Liên hệ: <strong class="text" th:text="${productdetail.getUser.phoneNumber}"></strong></button>

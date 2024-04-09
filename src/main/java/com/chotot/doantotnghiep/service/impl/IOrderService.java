@@ -21,4 +21,6 @@ public interface IOrderService {
     OrderDto findById(Long id);
     Boolean delete(Long id);
 
+//    OrderDto findByProduct(ProductDto productDto);
+
 }

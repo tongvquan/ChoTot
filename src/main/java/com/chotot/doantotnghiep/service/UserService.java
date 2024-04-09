@@ -26,6 +26,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public UserEntity findById(Long id) {
+        return userRepository.findById(id).get();
+    }
+
+    @Override
     public Boolean create(UserDto dto) {
         if(userRepository.findByUserName(dto.getUserName()) != null){
             return false;
@@ -42,25 +47,6 @@ public class UserService implements IUserService {
         return true;
     }
 
-    @Override
-    public void saveUser(UserEntity user) {
-        user.setAction(Action.ONLINE);
-        userRepository.save(user);
-    }
 
-    @Override
-    public void disconnect(UserEntity user) {
-        var storedUser = userRepository.findById(user.getId())
-                .orElse(null);
-        if(storedUser != null){
-            storedUser.setAction(Action.OFFLINE);
-            userRepository.save(storedUser);
-        }
 
-    }
-
-    @Override
-    public List<UserEntity> findConnectesUsers() {
-        return userRepository.findAllByAction(Action.ONLINE);
-    }
 }
