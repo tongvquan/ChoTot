@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org" >
 <head th:replace="admin/fragments/head :: head">
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -50,26 +50,18 @@
                             <tr>
                                 <th>Mã đơn hàng</th>
                                 <th>Tên</th>
-                                <th>Cần trả</th>
-                                <th>Giao từ</th>
-                                <th>Giao đến</th>
-                                <th>Giao đến lúc</th>
+                                <th>Đã thanh toán</th>
                                 <th>SDT người bán</th>
+                                <th>STK người bán</th>
                                 <th>Trạng thái</th>
                             </tr>
-                            <tr th:each="order: ${success}">
-                                <td th:text="${order.id}"></td>
-                                <td th:text="${order.product.name}"></td>
-                                <td th:text="${order.needPayFormat}"></td>
-                                <td th:text="${order.locate}"></td>
-                                <td th:text="${order.buyer.address}"></td>
-                                <td th:text="${order.product.modifiedDate}"></td>
-                                <td th:text="${phone}"></td>
-                                <td>
-                                    <form th:action="@{/admin/confirm/{id}(id=${order.id})}" method="post" id="confirmForm">
-                                        <button type="submit" class="btn btn-success">Xác nhận</button>
-                                    </form>
-                                </td>
+                            <tr th:each="history: ${history}">
+                                <td th:text="${history.id}"></td>
+                                <td th:text="${history.product.name}"></td>
+                                <td th:text="${history.payPriceFormat}"></td>
+                                <td th:text="${history.product.seller.phoneNumber}"></td>
+                                <td th:text="${history.product.seller.atm}"></td>
+                                <td><p>Hoàn thành</p></td>
                             </tr>
                             </tbody>
                         </table>
@@ -85,12 +77,12 @@
     </div>
     <!-- /.content-wrapper -->
 
-<!--    <footer class="main-footer">-->
-<!--        <div class="pull-right hidden-xs">-->
-<!--            <b>Version</b> 0.0.1-->
-<!--        </div>-->
-<!--        <strong>Copyright &copy; 2018 <a href="https://adminlte.io">TTPM_BKAP</a>.</strong>-->
-<!--    </footer>-->
+    <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+            <b>Version</b> 0.0.1
+        </div>
+        <strong>Copyright &copy; 2018 <a href="https://adminlte.io">TTPM_BKAP</a>.</strong>
+    </footer>
 
 </div>
 <!-- ./wrapper -->

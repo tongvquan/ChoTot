@@ -22,7 +22,8 @@ public class ProductMapper {
         dto.setModifiedDate(entity.getModifiedDate());
         dto.setCreatedDate(entity.getCreatedDate());
         dto.setCreatedBy(entity.getCreatedBy());
-        dto.setUser(entity.getSeller());
+        dto.setSeller(entity.getSeller());
+        dto.setOrder(entity.getOrder());
         //lay ra thoi gian da dang bai viet ban hang
         Date date = new Date();
         double posted=0;

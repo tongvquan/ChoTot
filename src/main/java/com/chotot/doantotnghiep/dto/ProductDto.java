@@ -27,6 +27,7 @@ public class ProductDto {
     private String posted;
     private String priceFormat;
     private String priceFormat10p;
-    private UserEntity user;
+    private UserEntity seller;
     private int status;
+    private OrderEntity order;
 }

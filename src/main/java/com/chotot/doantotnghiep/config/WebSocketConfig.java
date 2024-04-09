@@ -21,12 +21,15 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         registry.enableSimpleBroker("/user");
+
+        //Đặt tiền tố cho các tin nhắn được liên kết với các phương thức được chú thích bằng @MessageMapping
         registry.setApplicationDestinationPrefixes("/app");
         registry.setUserDestinationPrefix("/user");
     }
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
+        //Xác định điểm cuối WebSocket và bật tùy chọn dự phòng SockJS
         registry.addEndpoint("/ws").withSockJS();
     }
 

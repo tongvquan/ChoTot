@@ -44,7 +44,11 @@ public class ProductEntity extends BaseEntity{
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderEntity> order;
+    @OneToOne(mappedBy = "product")
+    private OrderEntity order;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<CommentEntity> comment;
+
 
 }

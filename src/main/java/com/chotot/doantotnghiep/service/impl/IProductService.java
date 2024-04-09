@@ -26,4 +26,11 @@ public interface IProductService {
     List<ProductDto> findByCategory(CategoryDto category);
     Page<ProductDto> findAll(Integer pageNo);
     Page<ProductDto> findAllByOrderByModifiedDateDesc(Integer pageNo);
+
+    Page<ProductDto> searchProduct(Integer pageNo,String keyword);
+
+    Boolean updateStt(Long id);
+
+    Long countByStatus(int a);
+
 }

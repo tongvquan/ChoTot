@@ -1,9 +1,9 @@
 package com.chotot.doantotnghiep.controller.admin;
 
 import com.chotot.doantotnghiep.dto.OrderDto;
-import com.chotot.doantotnghiep.dto.ProductDto;
 import com.chotot.doantotnghiep.service.impl.IOrderService;
 import com.chotot.doantotnghiep.service.impl.IProductService;
+import com.chotot.doantotnghiep.service.impl.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/admin")
@@ -21,9 +23,12 @@ public class AdminController {
     private IOrderService orderService;
 
     @Autowired
+    private IUserService userService;
+
+    @Autowired
     private IProductService productService;
 
-    @RequestMapping("/home")
+    @RequestMapping({"/home",""})
     public String home(Model model){
         List<OrderDto> confirm = orderService.confirm();
         model.addAttribute("confirm",confirm);
@@ -36,7 +41,7 @@ public class AdminController {
 
     @PostMapping("/confirm/{id}")
     public String updateStt(@PathVariable("id") Long id) {
-        if (productService.updateStt(id)) {
+        if (orderService.updateStt(id)) {
             return "redirect:/admin/home";
         } else {
             return "redirect:/";
@@ -58,10 +63,52 @@ public class AdminController {
     public String pay(Model model){
         List<OrderDto> pay = orderService.pay();
         model.addAttribute("pay",pay);
-        for(OrderDto orderDto : pay){
-            String phone =  orderDto.getProduct().getSeller().getPhoneNumber();
-            model.addAttribute("phone", phone);
-        }
         return "admin/pay";
     }
+
+    @RequestMapping("/statistics")
+    public String statistics(Model model){
+        List<OrderDto> history = orderService.history();
+        double sum = 0.0;
+        for(OrderDto dto : history){
+            sum += dto.getTotalPrice();
+        }
+        Locale vietnamLocale = new Locale("vi", "VN");
+        NumberFormat vietnamFormat = NumberFormat.getCurrencyInstance(vietnamLocale);
+        String fomat = vietnamFormat.format(sum*0.1);
+        model.addAttribute("profit", fomat);
+
+        Long countMem = userService.getAccountTrueCount();
+        model.addAttribute("countMem", countMem);
+
+        Long countProduct = productService.countByStatus(0);
+        model.addAttribute("countP", countProduct);
+
+        Long countOrderSuccess = productService.countByStatus(7);
+        model.addAttribute("countOrderSuccess", countOrderSuccess);
+
+
+        double monthlyProfit = orderService.monthlyProfit(4);
+        String monthlyProfit1 = vietnamFormat.format(monthlyProfit);
+        model.addAttribute("monthlyProfit", monthlyProfit1);
+        return "admin/statistics";
+    }
+
+    @RequestMapping("/history")
+    public String history(Model model){
+        List<OrderDto> history = orderService.history();
+        model.addAttribute("history",history);
+        return "admin/history";
+    }
+
+    @GetMapping("/cancel/{id}")
+    public String delete(@PathVariable("id")Long id){
+        if(orderService.delete(id)){
+            return "redirect:/admin";
+        }
+        else {
+            return "redirect:/manage-product";
+        }
+    }
+
 }

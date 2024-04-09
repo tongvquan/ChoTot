@@ -16,8 +16,9 @@ public class OrderDto {
     private double paid;
     private double needPay;
     private ProductEntity product;
-    private UserEntity user;
+    private UserEntity buyer;
     private String paidFormat;
     private String needPayFormat;
     private String totalPriceFormat;
+    private String payPriceFormat;
 }

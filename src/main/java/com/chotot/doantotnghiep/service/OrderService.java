@@ -65,10 +65,9 @@ public class OrderService implements IOrderService {
     public List<OrderDto> confirm() {
         List<OrderDto> list = new ArrayList<>();
         for(ProductEntity productEntity :  productRepository.findByStatus(1)){
-            for(OrderEntity orderEntity : orderRepository.findByProduct(productEntity)){
-                OrderDto orderDto = OrderMapper.toDTO(orderEntity);
-                list.add(orderDto);
-            }
+            OrderEntity order = orderRepository.findByProduct(productEntity);
+            OrderDto orderDto = OrderMapper.toDTO(order);
+            list.add(orderDto);
         }
         return list;
     }
@@ -77,10 +76,8 @@ public class OrderService implements IOrderService {
     public List<OrderDto> success() {
         List<OrderDto> list = new ArrayList<>();
         for(ProductEntity productEntity :  productRepository.findByStatus(5)){
-            for(OrderEntity orderEntity : orderRepository.findByProduct(productEntity)){
-                OrderDto orderDto = OrderMapper.toDTO(orderEntity);
-                list.add(orderDto);
-            }
+            OrderDto orderDto = OrderMapper.toDTO(orderRepository.findByProduct(productEntity));
+            list.add(orderDto);
         }
         return list;
     }
@@ -89,10 +86,18 @@ public class OrderService implements IOrderService {
     public List<OrderDto> pay() {
         List<OrderDto> list = new ArrayList<>();
         for(ProductEntity productEntity :  productRepository.findByStatus(6)){
-            for(OrderEntity orderEntity : orderRepository.findByProduct(productEntity)){
-                OrderDto orderDto = OrderMapper.toDTO(orderEntity);
-                list.add(orderDto);
-            }
+            OrderDto orderDto = OrderMapper.toDTO(orderRepository.findByProduct(productEntity));
+            list.add(orderDto);
+        }
+        return list;
+    }
+
+    @Override
+    public List<OrderDto> history() {
+        List<OrderDto> list = new ArrayList<>();
+        for(ProductEntity productEntity :  productRepository.findByStatus(7)){
+            OrderDto orderDto = OrderMapper.toDTO(orderRepository.findByProduct(productEntity));
+            list.add(orderDto);
         }
         return list;
     }
@@ -117,7 +122,7 @@ public class OrderService implements IOrderService {
     @Override
     public Boolean delete(Long id) {
         try {
-            OrderEntity entity = OrderMapper.toEntity(findById(id));
+            OrderEntity entity = orderRepository.findById(id).get();
             this.orderRepository.delete(entity);
 
 
@@ -135,6 +140,43 @@ public class OrderService implements IOrderService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public Boolean updateStt(Long id) {
+        try {
+            OrderEntity entity = orderRepository.findById(id).get();
+
+
+            Optional<ProductEntity> productEntity = productRepository.findById(entity.getProduct().getId());
+            ProductEntity existingProductEntity = productEntity.get();
+            try {
+                existingProductEntity.setStatus(existingProductEntity.getStatus()+1);
+                productRepository.save(existingProductEntity);
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public double monthlyProfit(int month) {
+        if(orderRepository.monthlyProfit(month) == null)
+            return 0;
+        else
+            return orderRepository.monthlyProfit(month)*0.1;
+    }
+
+
+    @Override
+    public OrderDto findByProduct(ProductDto productDto) {
+        ProductEntity product = productRepository.findById(productDto.getId()).get();
+        return OrderMapper.toDTO(orderRepository.findByProduct(product));
     }
 
 

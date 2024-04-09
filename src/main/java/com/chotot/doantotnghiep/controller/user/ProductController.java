@@ -1,6 +1,7 @@
 package com.chotot.doantotnghiep.controller.user;
 
 import com.chotot.doantotnghiep.dto.CategoryDto;
+import com.chotot.doantotnghiep.dto.OrderDto;
 import com.chotot.doantotnghiep.dto.ProductDto;
 import com.chotot.doantotnghiep.entity.CategoryEntity;
 import com.chotot.doantotnghiep.entity.ProductEntity;
@@ -30,8 +31,8 @@ public class ProductController {
     @Autowired
     private ICategoryService categoryService;
 
-//    @Autowired
-//    private IOrderService orderService;
+    @Autowired
+    private IOrderService orderService;
 
     @RequestMapping("/sell-product")
     public String sell(Model model){
@@ -58,6 +59,7 @@ public class ProductController {
     public String home(Model model){
         List<ProductDto> list = productService.findAllByUser();
         model.addAttribute("listProduct",list);
+
         return "manage";
     }
 

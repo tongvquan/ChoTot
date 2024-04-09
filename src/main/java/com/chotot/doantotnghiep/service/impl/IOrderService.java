@@ -15,12 +15,16 @@ public interface IOrderService {
 
     List<OrderDto> success();
     List<OrderDto> pay();
+    List<OrderDto> history();
 
     List<OrderDto> findAllByBuyer();
 
     OrderDto findById(Long id);
     Boolean delete(Long id);
+    Boolean updateStt(Long id);
 
-//    OrderDto findByProduct(ProductDto productDto);
+    double monthlyProfit(int month);
+
+    OrderDto findByProduct(ProductDto productDto);
 
 }

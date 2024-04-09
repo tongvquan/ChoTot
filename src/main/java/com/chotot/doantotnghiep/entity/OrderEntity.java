@@ -33,7 +33,7 @@ public class OrderEntity extends BaseEntity{
     @JoinColumn(name = "buyer_id")
     private UserEntity buyer;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne
     @JoinColumn(name = "product_id")
     private ProductEntity product;
 

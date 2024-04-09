@@ -52,13 +52,15 @@
                                 <th>Tên</th>
                                 <th>Cần thanh toán</th>
                                 <th>SDT người bán</th>
+                                <th>STK người bán</th>
                                 <th>Trạng thái</th>
                             </tr>
                             <tr th:each="order: ${pay}">
                                 <td th:text="${order.id}"></td>
                                 <td th:text="${order.product.name}"></td>
-                                <td th:text="${order.paidFormat}"></td>
-                                <td th:text="${phone}"></td>
+                                <td th:text="${order.payPriceFormat}"></td>
+                                <td th:text="${order.product.seller.phoneNumber}"></td>
+                                <td th:text="${order.product.seller.atm}"></td>
                                 <td>
                                     <form th:action="@{/admin/confirm/{id}(id=${order.id})}" method="post" id="confirmForm">
                                         <button type="submit" class="btn btn-success">Xác nhận</button>

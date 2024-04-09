@@ -12,6 +12,8 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
@@ -42,6 +44,14 @@ public class BaseEntity {
 
     @PreUpdate
     public void setLastModifiedDate() {
-        this.modifiedDate = new Date();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        if (currentPrincipalName.equals(this.createdBy)) {
+            this.modifiedDate = new Date();
+        }
     }
+
+
+
+
 }

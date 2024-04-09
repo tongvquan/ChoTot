@@ -38,14 +38,14 @@
                     Khu vực:
                     <strong class="" th:text="${productdetail.locate}"></strong>
                 </div>
-                <p id="recipientId" th:text="${productdetail.getUser.id}" style="display: none;"></p>
+                <p id="recipientId" th:text="${productdetail.seller.id}" style="display: none;"></p>
 
                 <div class="Product-buy d-flex py-4">
                     <div class="btn-main">
                         <button class="message-btn" th:onclick="window.location.href = '/chat' " onclick="connectToChat()">Nhắn tin với người bán</button>
                     </div>
                     <div class="">
-                        <button class="hotline-btn">Liên hệ: <strong class="text" th:text="${productdetail.getUser.phoneNumber}"></strong></button>
+                        <button class="hotline-btn">Liên hệ: <strong class="text" th:text="${productdetail.seller.phoneNumber}"></strong></button>
                     </div>
                 </div>
                 <div class="">
@@ -54,10 +54,114 @@
             </div>
         </div>
     </div>
+
+
+    <div class="col-md-12 col-lg-12 col-xl-12 mt-3">
+        <div class="card">
+            <div class="card-body p-4">
+                <h4 class="text-center mb-4 pb-2">Bình luận</h4>
+
+                <div class="row">
+                    <div class="col my-2">
+                        <div class="d-flex flex-column flex-start mt-4" th:each="cmt : ${comment}">
+                            <div class="d-flex">
+                                <img class="border rounded-circle me-2" th:src="@{'/assets/img/user.jpg'}" width="25px" height="25px">
+                                <div class="flex-grow-1 flex-shrink-1">
+                                    <div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <p class="mb-1">
+                                                <span th:text="${cmt.user.userName + ' -'}"></span>
+                                                <span class="small" th:text="${cmt.posted}"></span>
+
+                                            </p>
+                                            <button class="btn btn-link" th:onclick="'toggleCommentForm(\'' + ${cmt.id} + '\')'">
+                                                <i class="fas fa-reply fa-xs"></i>
+                                                <span class="small"> reply</span>
+                                            </button>
+                                        </div>
+                                        <p class="small mb-0" th:text="${cmt.content}"></p>
+                                    </div>
+
+
+
+                                    <div class="d-flex flex-start mt-4" th:each="rpl : ${cmt.replies}">
+                                        <img class="border rounded-circle me-2" th:src="@{'/assets/img/user.jpg'}" width="25px" height="25px">
+                                        <div class="flex-grow-1 flex-shrink-1">
+                                            <div>
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <p class="mb-1">
+                                                        <span th:text="${rpl.user.userName + ' -'}"></span>
+                                                        <span class="small" th:text="${rpl.posted}"></span>
+                                                    </p>
+                                                </div>
+                                                <p class="small mb-0" th:text="${rpl.content}">
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div th:id="'replyForm_'+${cmt.id}" class="card-footer pb-2 pt-2 border-0 col-12" style="display: none;">
+                                <form method="post" class="" th:action="@{/reply}" th:object="${ctt}">
+                                    <div class="d-flex flex-start w-100">
+                                        <img class="rounded-circle shadow-1-strong me-3" th:src="@{'/assets/img/user.jpg'}" alt="avatar" width="25px" height="25px" />
+                                        <div data-mdb-input-init class="form-outline w-100">
+                                            <input class="form-control" id="textArea" style="background: #fff;" placeholder="Viết phản hồi..." th:field="*{content}"></input>
+                                        </div>
+                                        <input type="hidden" name="productId" th:value="${productdetail.id}" />
+                                        <input type="hidden" name="cmtId" th:value="${cmt.id}" />
+                                    </div>
+                                    <div class="float-end mt-2 pt-1">
+                                        <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm">Phản hồi</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="card-footer pb-5 pt-2 border-0" style="background-color: #f8f9fa;">
+            <form method="post" class="" th:action="@{/comment}" th:object="${ctt}">
+                <div class="d-flex flex-start w-100">
+                    <img class="rounded-circle shadow-1-strong me-3" th:src="@{'/assets/img/user.jpg'}" alt="avatar" width="25px" height="25px" />
+                    <div data-mdb-input-init class="form-outline w-100">
+                        <textarea class="form-control" id="textAreaExample" rows="4" style="background: #fff;" placeholder="Viết bình luận..." th:field="*{content}"></textarea>
+                    </div>
+                    <input type="hidden" name="productId" th:value="${productdetail.id}" />
+                </div>
+                <div class="float-end mt-2 pt-1">
+                    <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm">Bình luận</button>
+                </div>
+            </form>
+
+        </div>
+
+
+    </div>
+
+
 </div>
 
 <footer th:replace="fragments/footer :: footer"></footer>
 
+<script th:inline="javascript">
+    function toggleCommentForm(index) {
+        var replyForm = document.getElementById('replyForm_'+ index);
+        if (replyForm.style.display === "none") {
+            replyForm.style.display = "block";
+        } else {
+            replyForm.style.display = "none";
+        }
+    }
+</script>
 
 <script th:src="@{/assets/js/scripts.js}"></script>
 <script th:src="@{/assets/js/product-detail.js}"></script>

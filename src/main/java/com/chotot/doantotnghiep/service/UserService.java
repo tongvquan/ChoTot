@@ -43,10 +43,15 @@ public class UserService implements IUserService {
         userEntity.setPhoneNumber(dto.getPhoneNumber());
         userEntity.setAddress(dto.getAddress());
         userEntity.setFullName(dto.getFullName());
+        userEntity.setAtm(dto.getAtm());
         userRepository.save(userEntity);
         return true;
     }
 
+    @Override
+    public Long getAccountTrueCount() {
+        return userRepository.countByStatus(true);
+    }
 
 
 }

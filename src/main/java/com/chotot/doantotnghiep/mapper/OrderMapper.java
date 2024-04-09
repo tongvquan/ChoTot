@@ -20,8 +20,15 @@ public class OrderMapper {
         dto.setNotes(entity.getNotes());
         dto.setPaid(entity.getPaid());
         dto.setNeedPay(entity.getNeedPay());
-        dto.setUser(entity.getBuyer());
+        dto.setBuyer(entity.getBuyer());
         dto.setProduct(entity.getProduct());
+
+        if(entity.getNeedPay()==0.0){
+            dto.setPayPriceFormat(vietnamFormat.format(entity.getTotalPrice()*0.9));
+        }
+        else {
+            dto.setPayPriceFormat(vietnamFormat.format(0));
+        }
 
         dto.setPaidFormat(vietnamFormat.format(dto.getPaid()));
         dto.setNeedPayFormat(vietnamFormat.format(dto.getNeedPay()));

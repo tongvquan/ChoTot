@@ -65,13 +65,16 @@
                                     <td th:text="${order.paidFormat}"></td>
                                     <td th:text="${order.needPayFormat}"></td>
                                     <td th:text="${order.locate}"></td>
-                                    <td th:text="${order.user.address}"></td>
+                                    <td th:text="${order.buyer.address}"></td>
                                     <td th:text="${phone}"></td>
                                     <td>
                                         <form th:action="@{/admin/confirm/{id}(id=${order.id})}" method="post" id="confirmForm">
                                             <button type="submit" class="btn btn-success">Xác nhận đã chuyển khoản</button>
                                         </form>
+                                        <a th:href="@{/admin/cancel/{id}(id=${order.id})}" class="btn btn-danger">Xóa</a>
                                     </td>
+
+
                                 </tr>
                             </tbody>
                         </table>

@@ -56,9 +56,6 @@ public class UserEntity{
     @LastModifiedDate
     private Date modifiedDate;
 
-    @Column(name = "action")
-    private Action action;
-
 
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -75,4 +72,6 @@ public class UserEntity{
     @OneToMany(mappedBy = "buyer")
     private List<OrderEntity> order;
 
+    @OneToMany(mappedBy = "user")
+    private List<CommentEntity> comment;
 }

@@ -10,4 +10,5 @@ public interface IUserService {
     UserEntity findByUserName(String userName);
     UserEntity findById(Long id);
     Boolean create(UserDto userEntity);
+    Long getAccountTrueCount();
 }

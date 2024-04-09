@@ -3,39 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" th:href="@{/assets/css/chat.css}">
-  <title>Chat</title>
+  <title>Chat Interface</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    .chat-container {
+      width: 80%;
+      max-width: 500px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .chat-box {
+      height: 400px;
+      overflow-y: scroll;
+      padding: 10px;
+    }
+    .message {
+      background-color: #f9f9f9;
+      border-radius: 5px;
+      padding: 5px 10px;
+      margin-bottom: 5px;
+    }
+    .message.sender {
+      background-color: #DCF8C6;
+      align-self: flex-end;
+    }
+    .message.receiver {
+      background-color: #E6E6E6;
+      align-self: flex-start;
+    }
+    .input-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: #fff;
+    }
+    .input-box input[type="text"] {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-right: 10px;
+    }
+    .input-box button {
+      padding: 8px 15px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-<header th:replace="fragments/header :: header"></header>
-<h2>One to One Chat | Spring boot & Websocket | By Alibou</h2>
+<div class="chat-container">
+  <div class="chat-box" id="chat-box">
+    <!-- Chat messages will be inserted here -->
+  </div>
+  <div class="input-box">
 
+    <form method="post" th:action="@{/chat}" th:object="${saveMsg}">
+      <input type="text" id="message-input" placeholder="Type a message..." th:field="*{content}">
 
-<div class="chat-container" id="chat-page">
-  <input type="text" name="sender" id="senderId" th:value="${user.id}" style="display: none" />
-
-  <div class="chat-area">
-    <div class="chat-area" id="chat-messages">
-    </div>
-
-    <form id="messageForm" name="messageForm" class="">
-      <div class="message-input">
-        <input autocomplete="off" type="text" id="message" placeholder="Type your message...">
-        <button type="submit">Send</button>
+      <div class="d-flex align-items-center justify-content-center mt-3">
+        <button class="btn btn-success w-100 py-3"  type="submit">Xác nhận mua</button>
       </div>
     </form>
   </div>
 </div>
-<script>
-
-
-</script>
-
-<footer th:replace="fragments/footer :: footer"></footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-<script th:src="@{/assets/js/chat.js}"></script>
 
 </body>
 </html>
