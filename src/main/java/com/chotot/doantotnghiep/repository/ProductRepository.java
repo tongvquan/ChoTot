@@ -15,15 +15,14 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
-    List<ProductEntity> findAllBySeller(UserEntity userEntity);
+    List<ProductEntity> findAllByUser(UserEntity userEntity);
     Optional<ProductEntity> findById(Long id);
-    List<ProductEntity> findFirst8ByStatusOrderByModifiedDateDesc(int status);
-    @Query(value = "SELECT * FROM product where status = 0 ORDER BY RAND() LIMIT 8", nativeQuery = true)
+    List<ProductEntity> findFirst8ByOrderByModifiedDateDesc();
+    @Query(value = "SELECT * FROM product ORDER BY RAND() LIMIT 8", nativeQuery = true)
     List<ProductEntity> findRandom8Products();
-    List<ProductEntity> findByCategoryAndStatus(CategoryEntity category, int status);
-    Page<ProductEntity> findAllByStatus(Pageable page, int status);
-    Page<ProductEntity> findAllByStatusOrderByModifiedDateDesc(Pageable page, int status);
+    List<ProductEntity> findByCategory(CategoryEntity category);
+    Page<ProductEntity> findAll(Pageable page);
+    Page<ProductEntity> findAllByOrderByModifiedDateDesc(Pageable page);
 
-    Page<ProductEntity> findByStatusAndNameLike(int status ,Pageable page, String keyword);
-    List<ProductEntity> findByStatus(int status);
+
 }
