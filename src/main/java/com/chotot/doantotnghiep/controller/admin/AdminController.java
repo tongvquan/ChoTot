@@ -36,6 +36,7 @@ public class AdminController {
             String phone =  orderDto.getProduct().getSeller().getPhoneNumber();
             model.addAttribute("phone", phone);
         }
+        model.addAttribute("pageTitle", "Chờ xác nhận");
         return "admin/index";
     }
 
@@ -56,6 +57,7 @@ public class AdminController {
             String phone =  orderDto.getProduct().getSeller().getPhoneNumber();
             model.addAttribute("phone", phone);
         }
+        model.addAttribute("pageTitle", "Đã giao xong");
         return "admin/success";
     }
 
@@ -63,6 +65,7 @@ public class AdminController {
     public String pay(Model model){
         List<OrderDto> pay = orderService.pay();
         model.addAttribute("pay",pay);
+        model.addAttribute("pageTitle", "Chờ thanh toán");
         return "admin/pay";
     }
 
@@ -91,6 +94,8 @@ public class AdminController {
         double monthlyProfit = orderService.monthlyProfit(4);
         String monthlyProfit1 = vietnamFormat.format(monthlyProfit);
         model.addAttribute("monthlyProfit", monthlyProfit1);
+
+        model.addAttribute("pageTitle", "Thống kê");
         return "admin/statistics";
     }
 
@@ -98,6 +103,7 @@ public class AdminController {
     public String history(Model model){
         List<OrderDto> history = orderService.history();
         model.addAttribute("history",history);
+        model.addAttribute("pageTitle", "Lịch sử hoàn thành");
         return "admin/history";
     }
 

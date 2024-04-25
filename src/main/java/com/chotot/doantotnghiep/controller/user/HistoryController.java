@@ -28,6 +28,7 @@ public class HistoryController {
     public String home(Model model){
         List<OrderDto> list = orderService.findAllByBuyer();
         model.addAttribute("listOrder",list);
+        model.addAttribute("pageTitle", "Đơn hàng");
         return "history";
     }
 

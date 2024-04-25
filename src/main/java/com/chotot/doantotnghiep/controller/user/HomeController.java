@@ -36,7 +36,7 @@ public class HomeController {
         model.addAttribute("newProduct", newProduct);
         List<ProductDto> allProduct = productService.findRandom8Products();
         model.addAttribute("allProduct", allProduct);
-
+        model.addAttribute("pageTitle", "Trang chủ");
         return "index";
     }
 

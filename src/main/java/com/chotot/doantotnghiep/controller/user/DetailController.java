@@ -42,7 +42,7 @@ public class DetailController {
         CommentDto cmt = new CommentDto();
         model.addAttribute("ctt", cmt);
 
-
+        model.addAttribute("pageTitle", "Chi tiết");
         return "detail";
     }
     @PostMapping("/comment")

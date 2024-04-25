@@ -40,6 +40,7 @@ public class ProductController {
         model.addAttribute("product",product);
         List<CategoryDto> category = categoryService.getAll();
         model.addAttribute("categories", category);
+        model.addAttribute("pageTitle", "Đăng bán");
         return "sell";
     }
     @PostMapping("/sell-product")
@@ -59,7 +60,7 @@ public class ProductController {
     public String home(Model model){
         List<ProductDto> list = productService.findAllByUser();
         model.addAttribute("listProduct",list);
-
+        model.addAttribute("pageTitle", "Quản lý");
         return "manage";
     }
 
@@ -69,6 +70,7 @@ public class ProductController {
         model.addAttribute("product",product);
         List<CategoryDto> category = categoryService.getAll();
         model.addAttribute("categories", category);
+        model.addAttribute("pageTitle", "Sửa");
         return "edit";
     }
     @PostMapping("/edit-product")
@@ -113,6 +115,7 @@ public class ProductController {
     public String getProductByCategory(Model model,@PathVariable("categoryName")String name){
         List<ProductDto> product = productService.findByCategory(categoryService.findByName(name));
         model.addAttribute("products", product);
+        model.addAttribute("pageTitle", "Danh mục");
         return "getbycategory";
     }
     @GetMapping("/new-product")
@@ -121,6 +124,7 @@ public class ProductController {
         model.addAttribute("totalPage", list.getTotalPages());
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("listNewProduct", list);
+        model.addAttribute("pageTitle", "Mới");
         return "orderbymodify";
     }
     @GetMapping("/all-product")
@@ -129,6 +133,7 @@ public class ProductController {
         model.addAttribute("totalPage", list.getTotalPages());
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("listAllProduct", list);
+        model.addAttribute("pageTitle", "Danh sách");
         return "allproduct";
     }
 
@@ -139,6 +144,7 @@ public class ProductController {
         model.addAttribute("totalPage", list.getTotalPages());
         model.addAttribute("currentPage", pageNo);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("pageTitle", "Tìm kiếm");
         return "search";
     }
 }

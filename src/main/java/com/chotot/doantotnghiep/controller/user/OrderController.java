@@ -27,6 +27,7 @@ public class OrderController {
         model.addAttribute("orderProduct", product);
         OrderEntity orderEntity = new OrderEntity();
         model.addAttribute("order",orderEntity);
+        model.addAttribute("pageTitle", "Đặt hàng");
         return "cart";
     }
 
@@ -46,6 +47,7 @@ public class OrderController {
     @RequestMapping("/payment")
     public String payment(Model model, @ModelAttribute("order") OrderDto orderDto){
         model.addAttribute("order", orderDto);
+        model.addAttribute("pageTitle", "Thanh toán");
         return "pay";
     }
 
