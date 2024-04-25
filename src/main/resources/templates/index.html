@@ -10,7 +10,7 @@
     <div class="container-fluid thumnail">
         <div class="slideshow-container pt-2">
             <div class="slide" th:each="slide: ${slides}">
-                <img th:src="@{'/uploads/'+ ${slide.image}}" th:alt="${slide.name}">
+                <img th:src="${slide.image}" th:alt="${slide.name}">
             </div>
             <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
             <a class="next" onclick="changeSlide(1)">&#10095;</a>
@@ -37,7 +37,7 @@
                         <a class="icon-heart" href="#"><i class="fa-regular fa-heart"></i></a>
                         <div class="thumbnail">
                             <a th:href="@{/product/detail/{id}(id=${product.id})}" class="">
-                                <img class="w-100" th:src="@{'/uploads/'+ ${product.image}}" alt="" >
+                                <img class="w-100" th:src="${product.image}" alt="" >
                             </a>
                         </div>
                         <div class="product-info">
@@ -76,7 +76,7 @@
                         <a class="icon-heart" href="#"><i class="fa-regular fa-heart"></i></a>
                         <div class="thumbnail">
                             <a th:href="@{/product/detail/{id}(id=${product.id})}" class="">
-                                <img class="w-100" th:src="@{'/uploads/'+ ${product.image}}" alt="" >
+                                <img class="w-100" th:src="${product.image}" alt="" >
                             </a>
                         </div>
                         <div class="product-info">

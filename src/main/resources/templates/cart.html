@@ -40,7 +40,7 @@
                         </div>
                         <div class="d-flex mb-3 ">
                             <div>
-                                <img class="item-image" th:src="@{'/uploads/'+ ${orderProduct.image}}" alt="">
+                                <img class="item-image" th:src="${orderProduct.image}" alt="">
                             </div>
                             <div class="ms-2">
                                 <div th:text="${orderProduct.name}"></div>

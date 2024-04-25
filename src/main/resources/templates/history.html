@@ -41,7 +41,7 @@
                                 </tr>
                                 <tr th:each="order, index : ${listOrder}">
                                     <td th:text="${index.index + 1}"></td>
-                                    <td><img th:src="@{'/uploads/'+ ${order.product.image}}" alt="" width="100px"></td>
+                                    <td><img th:src="${order.product.image}" alt="" width="100px"></td>
                                     <td th:text="${order.product.name}"></td>
                                     <td th:text="${order.product.price}"></td>
 

@@ -46,7 +46,7 @@
                                 </tr>
                                 <tr th:each="product, index : ${listProduct}">
                                     <td th:text="${index.index + 1}"></td>
-                                    <td><img th:src="@{'/uploads/'+ ${product.image}}" alt="" width="100px"></td>
+                                    <td><img th:src="${product.image}" alt="" width="100px"></td>
                                     <td th:text="${product.name}"></td>
                                     <td th:if="${product.category != null}" th:text="${product.category.name}"></td>
                                     <td th:unless="${product.category != null}">[Category not available]</td> <!-- Thêm dòng này nếu category là null -->

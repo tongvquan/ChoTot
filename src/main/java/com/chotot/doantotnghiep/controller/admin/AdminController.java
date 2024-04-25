@@ -5,15 +5,19 @@ import com.chotot.doantotnghiep.dto.OrderDto;
 import com.chotot.doantotnghiep.dto.UserDto;
 import com.chotot.doantotnghiep.entity.SlideEntity;
 import com.chotot.doantotnghiep.service.impl.*;
+import com.cloudinary.Cloudinary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin")
@@ -34,7 +38,7 @@ public class AdminController {
     private ISlideService slideService;
 
     @Autowired
-    private IStorageService storageService;
+    private Cloudinary cloudinary;
 
     @RequestMapping({"/home",""})
     public String home(Model model){
@@ -157,11 +161,14 @@ public class AdminController {
     }
 
     @PostMapping("/add-slide")
-    public String create(@ModelAttribute("slide") SlideEntity slideEntity, @RequestParam("inputImage") MultipartFile file){
+    public String create(@ModelAttribute("slide") SlideEntity slideEntity, @RequestParam("inputImage") MultipartFile file) throws IOException {
 
-        this.storageService.store(file);
-        String fileName = file.getOriginalFilename();
-        slideEntity.setImage(fileName);
+        String img =  cloudinary.uploader()
+                .upload(file.getBytes(),
+                        Map.of("public_id", UUID.randomUUID().toString()))
+                .get("url")
+                .toString();
+        slideEntity.setImage(img);
         if(slideService.save(slideEntity)){
             return "redirect:/admin/slide";
         }
