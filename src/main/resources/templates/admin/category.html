@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="admin/fragments/head :: head">
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <header th:replace="admin/fragments/header :: header"></header>
+
+    <!-- =============================================== -->
+
+    <!-- Left side column. contains the sidebar -->
+    <aside th:replace="admin/fragments/menu :: menu"></aside>
+
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Quản lý danh mục
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="col-xs-12">
+                <div class="box">
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-hover">
+                            <tbody>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên</th>
+                            </tr>
+                            <tr th:each="category: ${categories}">
+                                <td th:text="${category.id}"></td>
+                                <td th:text="${category.name}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+
+                <form class="" method="post" th:action="@{/admin/add-category}" th:object="${category}">
+                    <div class="form-group mt-4">
+                        <div class="form-group">
+                            <input type="text" class="form-control p-3" id="InputName" placeholder="Thêm danh mục" th:field="*{name}"/>
+                        </div>
+                    </div>
+                    <div class="form-group mb-4">
+                        <button type="submit" id="btnSubmit" class="btn btn-warning btn-block w-100 py-2 text-light fs-5">Thêm danh mục</button>
+                    </div>
+                </form>
+                <!-- /.box -->
+            </div>
+            <!-- /.box -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<script th:src="@{/admin/js/jquery.min.js}"></script>
+<script th:src="@{/admin/js/jquery-ui.js}"></script>
+<script th:src="@{/admin/js/bootstrap.min.js}"></script>
+<script th:src="@{/admin/js/adminlte.min.js}"></script>
+<script th:src="@{/admin/js/dashboard.js}"></script>
+<script th:src="@{/admin/tinymce/tinymce.min.js}"></script>
+<script th:src="@{/admin/tinymce/config.js}"></script>
+<script th:src="@{/admin/js/function.js}"></script>
+</body>
+</html>

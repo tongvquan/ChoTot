@@ -9,16 +9,8 @@
 
     <div class="container-fluid thumnail">
         <div class="slideshow-container pt-2">
-            <div class="slide">
-                <img src="./assets/img/ef3be935782d496456bf9b8e5e7f072a-2824954100074025769.png" alt="Slide 1">
-            </div>
-
-            <div class="slide">
-                <img src="./assets/img/d85499d34175f0c59a8851f827ebeb73-2860597506351454432.jpg" alt="Slide 2">
-            </div>
-
-            <div class="slide">
-                <img src="./assets/img/ef3be935782d496456bf9b8e5e7f072a-2824954100074025769.png" alt="Slide 3">
+            <div class="slide" th:each="slide: ${slides}">
+                <img th:src="@{'/uploads/'+ ${slide.image}}" th:alt="${slide.name}">
             </div>
             <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
             <a class="next" onclick="changeSlide(1)">&#10095;</a>

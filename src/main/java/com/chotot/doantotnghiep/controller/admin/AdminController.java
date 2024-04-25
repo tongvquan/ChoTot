@@ -1,16 +1,15 @@
 package com.chotot.doantotnghiep.controller.admin;
 
+import com.chotot.doantotnghiep.dto.CategoryDto;
 import com.chotot.doantotnghiep.dto.OrderDto;
-import com.chotot.doantotnghiep.service.impl.IOrderService;
-import com.chotot.doantotnghiep.service.impl.IProductService;
-import com.chotot.doantotnghiep.service.impl.IUserService;
+import com.chotot.doantotnghiep.dto.UserDto;
+import com.chotot.doantotnghiep.entity.SlideEntity;
+import com.chotot.doantotnghiep.service.impl.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -27,6 +26,15 @@ public class AdminController {
 
     @Autowired
     private IProductService productService;
+
+    @Autowired
+    private ICategoryService categoryService;
+
+    @Autowired
+    private ISlideService slideService;
+
+    @Autowired
+    private IStorageService storageService;
 
     @RequestMapping({"/home",""})
     public String home(Model model){
@@ -116,5 +124,62 @@ public class AdminController {
             return "redirect:/manage-product";
         }
     }
+
+    @RequestMapping("/category")
+    public String category(Model model){
+        List<CategoryDto> categoryDto = categoryService.getAll();
+        model.addAttribute("categories",categoryDto);
+        model.addAttribute("pageTitle", "Quản lý danh mục");
+        CategoryDto category = new CategoryDto();
+        model.addAttribute("category", category);
+        return "admin/category";
+    }
+
+    @PostMapping("/add-category")
+    public String save(@ModelAttribute("category") CategoryDto categoryDto){
+
+        if (categoryService.save(categoryDto)){
+            return "redirect:/admin/category";
+        }
+        else {
+            return "redirect:/admin";
+        }
+    }
+
+    @RequestMapping("/slide")
+    public String slide(Model model){
+        List<SlideEntity> slides = slideService.findAll();
+        model.addAttribute("slides",slides);
+        model.addAttribute("pageTitle", "Quản lý slide");
+        SlideEntity slide = new SlideEntity();
+        model.addAttribute("slide", slide);
+        return "admin/slide";
+    }
+
+    @PostMapping("/add-slide")
+    public String create(@ModelAttribute("slide") SlideEntity slideEntity, @RequestParam("inputImage") MultipartFile file){
+
+        this.storageService.store(file);
+        String fileName = file.getOriginalFilename();
+        slideEntity.setImage(fileName);
+        if(slideService.save(slideEntity)){
+            return "redirect:/admin/slide";
+        }
+        else {
+            return "redirect:/admin";
+        }
+    }
+
+    @GetMapping("/delete-slide/{id}")
+    public String deleteSlide(@PathVariable("id")Long id){
+        if(slideService.delete(id)){
+            return "redirect:/admin/slide";
+        }
+        else {
+            return "redirect:/manage-product";
+        }
+    }
+
+
 
 }

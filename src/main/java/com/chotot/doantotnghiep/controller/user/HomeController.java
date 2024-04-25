@@ -4,8 +4,10 @@ import com.chotot.doantotnghiep.dto.CategoryDto;
 import com.chotot.doantotnghiep.dto.ProductDto;
 import com.chotot.doantotnghiep.entity.CategoryEntity;
 import com.chotot.doantotnghiep.entity.ProductEntity;
+import com.chotot.doantotnghiep.entity.SlideEntity;
 import com.chotot.doantotnghiep.service.impl.ICategoryService;
 import com.chotot.doantotnghiep.service.impl.IProductService;
+import com.chotot.doantotnghiep.service.impl.ISlideService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -28,6 +30,9 @@ public class HomeController {
     @Autowired
     private IProductService productService;
 
+    @Autowired
+    private ISlideService slideService;
+
     @GetMapping("/")
     public String home(Model model){
         List<CategoryDto> category = categoryService.getAll();
@@ -37,10 +42,10 @@ public class HomeController {
         List<ProductDto> allProduct = productService.findRandom8Products();
         model.addAttribute("allProduct", allProduct);
         model.addAttribute("pageTitle", "Trang chủ");
+
+        List<SlideEntity> slideEntities = slideService.findAll();
+        model.addAttribute("slides", slideEntities);
         return "index";
     }
-
-
-
 
 }

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head th:replace="admin/fragments/head :: head">
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  <header th:replace="admin/fragments/header :: header"></header>
+
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
+  <aside th:replace="admin/fragments/menu :: menu"></aside>
+
+  <!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Quản lý danh mục
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+      <!-- Default box -->
+      <div class="col-xs-12">
+        <div class="box">
+          <!-- /.box-header -->
+          <div class="box-body table-responsive no-padding">
+            <table class="table table-hover">
+              <tbody>
+              <tr>
+                <th>ID</th>
+                <th>Tên</th>
+                <th>Slide</th>
+                <th>Thao tác</th>
+              </tr>
+              <tr th:each="slideItem: ${slides}">
+                <td th:text="${slideItem.id}"></td>
+                <td th:text="${slideItem.name}"></td>
+                <td><img th:src="@{'/uploads/'+ ${slideItem.image}}" alt="" width="100px"></td>
+                <td>
+                  <a th:href="@{/admin/delete-slide/{id}(id=${slideItem.id})}" class="btn btn-danger">Xóa</a>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <h3>Thêm mới</h3>
+
+        <form class="" method="post" th:action="@{/admin/add-slide}" th:object="${slide}" enctype="multipart/form-data">
+          <div class="form-group mt-4">
+            <div class="form-group">
+              <input type="text" class="form-control p-3" id="InputName" placeholder="Tên" th:field="*{name}" />
+            </div>
+
+            <div class="form-group my-3" >
+              <input type="file" class="form-control p-3" name="inputImage" id="inputImage">
+            </div>
+
+          </div>
+          <div class="form-group mb-4">
+            <button type="submit" id="btnSubmit" class="btn btn-warning btn-block w-100 py-2 text-light fs-5">Thêm danh mục</button>
+          </div>
+        </form>
+        <!-- /.box -->
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+
+<script th:src="@{/admin/js/jquery.min.js}"></script>
+<script th:src="@{/admin/js/jquery-ui.js}"></script>
+<script th:src="@{/admin/js/bootstrap.min.js}"></script>
+<script th:src="@{/admin/js/adminlte.min.js}"></script>
+<script th:src="@{/admin/js/dashboard.js}"></script>
+<script th:src="@{/admin/tinymce/tinymce.min.js}"></script>
+<script th:src="@{/admin/tinymce/config.js}"></script>
+<script th:src="@{/admin/js/function.js}"></script>
+</body>
+</html>

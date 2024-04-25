@@ -10,6 +10,7 @@ import com.chotot.doantotnghiep.utils.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -45,5 +46,21 @@ public class SlideService implements ISlideService {
         else {
             return false;
         }
+    }
+
+    @Override
+    public List<SlideEntity> findAll() {
+        return slideRepository.findAll();
+    }
+
+    @Override
+    public Boolean delete(Long id) {
+        try {
+            this.slideRepository.deleteById(id);
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
     }
 }
