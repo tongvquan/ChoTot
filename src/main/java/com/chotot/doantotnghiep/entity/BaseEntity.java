@@ -26,11 +26,11 @@ public class BaseEntity {
 
     @Column(name = "createddate", nullable = false, updatable = false)
     @CreatedDate
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd/MM")
     private Date createdDate;
 
     @Column(name = "modifieddate")
-    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
+    @DateTimeFormat(pattern = "dd/MM")
     @LastModifiedDate
     private Date modifiedDate;
 

@@ -42,7 +42,7 @@
 
                 <div class="Product-buy d-flex py-4">
                     <div class="btn-main">
-                        <button class="message-btn" th:onclick="window.location.href = '/chat' " onclick="connectToChat()">Nhắn tin với người bán</button>
+                        <button class="message-btn">Nhắn tin với người bán</button>
                     </div>
                     <div class="">
                         <button class="hotline-btn">Liên hệ: <strong class="text" th:text="${productdetail.seller.phoneNumber}"></strong></button>
@@ -128,7 +128,7 @@
 
 
 
-        <div class="card-footer pb-5 pt-2 border-0" style="background-color: #f8f9fa;">
+        <div class="card-footer pb-5 pt-2 border-0 p-2" style="background-color: #f8f9fa;">
             <form method="post" class="" th:action="@{/comment}" th:object="${ctt}">
                 <div class="d-flex flex-start w-100">
                     <img class="rounded-circle shadow-1-strong me-3" th:src="@{'/assets/img/user.jpg'}" alt="avatar" width="25px" height="25px" />
@@ -161,6 +161,26 @@
             replyForm.style.display = "none";
         }
     }
+</script>
+
+<!--<script>-->
+<!--    function callFetchComment(){-->
+<!--        $.ajax({-->
+<!--            url: '/api/fetch-comment',-->
+<!--            type: 'GET',-->
+<!--            cache: false,-->
+<!--            dataType: "html",-->
+<!--            success: function(response) {-->
+<!--                response = JSON.parse(response)-->
+<!--            },-->
+<!--            error: function(error) {-->
+<!--                console.error('Lấy cartItems thất bại', error);-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--    callFetchComment()-->
+
+
 </script>
 
 <script th:src="@{/assets/js/scripts.js}"></script>

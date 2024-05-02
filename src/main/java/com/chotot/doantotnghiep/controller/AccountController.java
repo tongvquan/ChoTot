@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Controller
 public class AccountController {
 
@@ -33,12 +36,32 @@ public class AccountController {
     }
     @PostMapping("/register")
     public String save(@ModelAttribute("user") UserDto user){
+        String phoneNumber = user.getPhoneNumber();
+        System.out.println(">>> check phoneNumber" + phoneNumber);
+        if (!isValidPhoneNumber(phoneNumber)) {
+            System.out.println(">>> check 1");
+            return "redirect:/register?error=invalidPhoneNumber";
+        }
+        System.out.println(">>> check 2");
+
         if (userService.create(user)){
+            System.out.println(">>> check 3");
             return "redirect:/login";
         }
         else {
+            System.out.println(">>> check 4");
             return "redirect:/register";
         }
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        String phoneRegex = "(?:(?:\\+?1\\s*(?:[.-]\\s*)?)?(?:(\\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]‌​)\\s*)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\\s*(?:[.-]\\s*)?)([2-9]1[02-9]‌​|[2-9][02-9]1|[2-9][02-9]{2})\\s*(?:[.-]\\s*)?([0-9]{4})\\s*(?:\\s*(?:#|x\\.?|ext\\.?|extension)\\s*(\\d+)\\s*)?";
+        // Tạo pattern từ regex
+        Pattern pattern = Pattern.compile(phoneRegex);
+        // Tạo matcher từ số điện thoại và pattern
+        Matcher matcher = pattern.matcher(phoneNumber);
+        // Kiểm tra xem matcher có khớp với regex không
+        return matcher.matches();
     }
 
 }
