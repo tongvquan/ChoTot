@@ -42,7 +42,7 @@
               <tr th:each="slideItem: ${slides}">
                 <td th:text="${slideItem.id}"></td>
                 <td th:text="${slideItem.name}"></td>
-                <td><img th:src="@{'/uploads/'+ ${slideItem.image}}" alt="" width="100px"></td>
+                <td><img th:src="${slideItem.image}" alt="" width="100px"></td>
                 <td>
                   <a th:href="@{/admin/delete-slide/{id}(id=${slideItem.id})}" class="btn btn-danger">Xóa</a>
                 </td>

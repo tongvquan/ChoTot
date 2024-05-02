@@ -39,7 +39,7 @@ public class ProductService implements IProductService {
     public List<ProductDto> findAllByUser() {
         UserEntity userEntity = userService.findByUserName(SecurityUtils.getCurrentUserName());
         List<ProductDto> list = new ArrayList<>();
-        for(ProductEntity entity : productRepository.findAllBySeller(userEntity)){
+        for(ProductEntity entity : productRepository.findAllBySellerOrderByStatusAsc(userEntity)){
             ProductDto dto = ProductMapper.toDTO(entity);
             dto.setStatus(entity.getStatus());
             list.add(dto);

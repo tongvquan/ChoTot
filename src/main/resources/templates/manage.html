@@ -39,7 +39,6 @@
                                     <th>Thương hiệu</th>
                                     <th>Giá bán</th>
                                     <th>Thời gian</th>
-                                    <th>SDT người mua</th>
                                     <th>Trạng thái</th>
                                     <th>Tùy chọn</th>
 
@@ -50,13 +49,10 @@
                                     <td th:text="${product.name}"></td>
                                     <td th:if="${product.category != null}" th:text="${product.category.name}"></td>
                                     <td th:unless="${product.category != null}">[Category not available]</td> <!-- Thêm dòng này nếu category là null -->
-                                    <td th:text="${product.price}"></td>
+                                    <td th:text="${product.priceFormat}"></td>
 
                                     <td th:if="${product.modifiedDate != null}" th:text="${product.modifiedDate}"></td>
                                     <td th:unless="${product.modifiedDate != null}" th:text="${product.createdDate}"></td>
-
-                                    <td th:if="${product.order != null}" th:text="${product.order.buyer.phoneNumber}"></td>
-                                    <td th:unless="${product.order != null}">*********</td>
 
                                     <td th:if="${product.status == 0}">Đang bán</td>
                                     <td th:if="${product.status == 1}">Chờ xác nhận</td>
@@ -75,9 +71,12 @@
                                     <td th:if="${product.status == 6}">Chờ thanh toán</td>
                                     <td th:if="${product.status == 7}">Thành công</td>
 
-                                    <td>
+                                    <td th:if="${product.status == 0}">
                                         <a th:href="@{/edit-product/{id}(id=${product.id})}" class="btn btn-success">Sửa</a>
                                         <a th:href="@{/delete-product/{id}(id=${product.id})}" class="btn btn-danger">Xóa</a>
+                                    </td>
+                                    <td th:unless="${product.status == 0}">
+                                        <a th:href="@{/detail-order/{id}(id=${product.id})}" class="btn btn-success">Chi tiết</a>
                                     </td>
                                 </tr>
                                 </tbody></table>

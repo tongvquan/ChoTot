@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 @Controller
 public class OrderController {
 
@@ -49,6 +52,23 @@ public class OrderController {
         model.addAttribute("order", orderDto);
         model.addAttribute("pageTitle", "Thanh toán");
         return "pay";
+    }
+
+    @RequestMapping("/detail-order/{id}")
+    public String detail(Model model, @PathVariable("id") Long id){
+        ProductDto productDto = productService.findById(id);
+        model.addAttribute("product", productDto);
+
+        Locale vietnamLocale = new Locale("vi", "VN");
+        NumberFormat vietnamFormat = NumberFormat.getCurrencyInstance(vietnamLocale);
+
+        String paidFormat = vietnamFormat.format(productDto.getOrder().getPaid());
+        model.addAttribute("paidFormat", paidFormat);
+
+        String needFormat = vietnamFormat.format(productDto.getOrder().getNeedPay());
+        model.addAttribute("needFormat", needFormat);
+        model.addAttribute("pageTitle", "Chi tiết");
+        return "orderDetail";
     }
 
 

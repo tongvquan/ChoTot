@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/head :: head">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .order-details {
+            max-width: 600px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .order-details h2 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        .order-details .item {
+            margin-bottom: 10px;
+        }
+        .order-details .item span {
+            font-weight: bold;
+        }
+    </style>
+
+<body>
+<header th:replace="fragments/header :: header"></header>
+
+
+<div class="container w-50 bg-light mt-4">
+    <div class="row py-2 px-3">
+        <h1 class="text-center mb-4">Chi tiết đơn hàng</h1>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Thông tin khách hàng</h2>
+                <p class="card-text" th:text="'Họ tên: ' + ${product.order.buyer.fullName}"></p>
+                <p class="card-text" th:text="'Địa chỉ: ' + ${product.order.buyer.address}"></p>
+                <p class="card-text" th:text="'Điện thoại: ' + ${product.order.buyer.phoneNumber}"></p>
+            </div>
+        </div>
+
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">Sản phẩm</h2>
+                <div class="mb-3">
+                    <p th:text="'Tên sản phẩm: ' + ${product.name}"></p>
+                    <p th:text="'Thương hiệu: ' + ${product.category.name}"></p>
+                    <p th:text="'Mô tả: ' + ${product.description}"></p>
+                    <p th:text="'Ghi chú: ' + ${product.order.notes}"></p>
+                    <p th:text="'Giá: ' + ${product.priceFormat}"></p>
+                    <p th:text="'Đã đặt cọc: ' + ${paidFormat}"></p>
+                    <p th:text="'Cần thanh toán: ' + ${needFormat}"></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<footer th:replace="fragments/footer :: footer"></footer>
+
+
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script th:src="@{/assets/js/script.js}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var toggleMenu = document.getElementById("toggleMenu");
+        var accountMenu = document.getElementById("accountMenu");
+
+        toggleMenu.addEventListener("mouseenter", function() {
+            accountMenu.style.display = "block"; // Hiển thị thanh menu khi di chuột vào
+        });
+
+        toggleMenu.addEventListener("mouseleave", function() {
+            accountMenu.style.display = "none"; // Ẩn thanh menu khi di chuột ra
+        });
+    });
+
+</script>
+</body>
+
+</html>

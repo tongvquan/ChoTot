@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Long> {
-    List<ProductEntity> findAllBySeller(UserEntity userEntity);
+    List<ProductEntity> findAllBySellerOrderByStatusAsc(UserEntity userEntity);
 
     Optional<ProductEntity> findById(Long id);
     List<ProductEntity> findFirst8ByStatusOrderByModifiedDateDesc(int status);

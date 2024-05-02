@@ -51,6 +51,7 @@ public class ProductController {
         model.addAttribute("pageTitle", "Đăng bán");
         return "sell";
     }
+
     @PostMapping("/sell-product")
     public String save(@ModelAttribute("product") ProductDto product, @RequestParam("inputImage")MultipartFile file) throws IOException {
 //        this.storageService.store(file);
