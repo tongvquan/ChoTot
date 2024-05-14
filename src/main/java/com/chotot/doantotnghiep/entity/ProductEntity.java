@@ -19,10 +19,10 @@ public class ProductEntity extends BaseEntity{
 //    private String title;
 
     @Column(name = "price")
-    private double price;
+    private Double price;
 
     @Column(name = "rate")
-    private int rate;
+    private Integer rate;
 
     @Column(name = "description")
     private String description;

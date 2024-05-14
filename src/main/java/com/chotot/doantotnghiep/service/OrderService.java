@@ -129,7 +129,7 @@ public class OrderService implements IOrderService {
             Optional<ProductEntity> productEntity = productRepository.findById(entity.getProduct().getId());
             ProductEntity existingProductEntity = productEntity.get();
             try {
-                existingProductEntity.setStatus(0);
+                existingProductEntity.setStatus(8);
                 productRepository.save(existingProductEntity);
             }
             catch (Exception e){

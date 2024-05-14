@@ -54,7 +54,7 @@
 
                                     <td th:if="${order.product.status == 3}">Đang giao hàng</td>
                                     <td th:if="${order.product.status == 4}">
-                                        <form th:action="@{/confirm/{id}(id=${order.product.id})}" method="post" id="confirm">
+                                        <form th:action="@{/confirm1/{id}(id=${order.product.id})}" method="post" id="confirm">
                                             <button type="submit" class="btn btn-success">Đã nhận hàng</button>
                                         </form>
                                     </td>

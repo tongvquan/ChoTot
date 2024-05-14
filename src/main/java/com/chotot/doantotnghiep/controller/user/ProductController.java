@@ -45,6 +45,8 @@ public class ProductController {
     @RequestMapping("/sell-product")
     public String sell(Model model){
         ProductEntity product = new ProductEntity();
+        product.setRate(null);
+        product.setPrice(null);
         model.addAttribute("product",product);
         List<CategoryDto> category = categoryService.getAll();
         model.addAttribute("categories", category);
