@@ -71,15 +71,15 @@ public class OrderController {
         return "orderDetail";
     }
 
-    @GetMapping("/delete-order/{id}")
-    public String delete(@PathVariable("id")Long id){
-        if(orderService.delete(id)){
-            return "redirect:/history";
-        }
-        else {
-            return "redirect:/";
-        }
-    }
+//    @GetMapping("/delete-order/{id}")
+//    public String delete(@PathVariable("id")Long id){
+//        if(orderService.delete(id)){
+//            return "redirect:/";
+//        }
+//        else {
+//            return "redirect:/";
+//        }
+//    }
 
 
 }
